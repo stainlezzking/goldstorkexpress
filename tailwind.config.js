@@ -16,7 +16,7 @@ module.exports = {
         primary: "#FFBE34",
         secondary: "#091242",
         heading: "#1C1F35",
-        paragraph: "666C89",
+        paragraph: "#666C89",
         grad1: "#FFB629",
         grad2: "#FFDA56",
         grad3: "#FFD7A6",
