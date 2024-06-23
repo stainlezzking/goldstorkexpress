@@ -2,7 +2,7 @@ import Section from "@/components/builders/section.component";
 import SubTitle from "@/components/builders/title.component";
 import Whatwedo from "@/components/builders/whatwedo.component";
 // import container from "../assets/container.png";
-import banner from "../assets/banner.png";
+import banner from "../assets/pages-banner/home-banner.png";
 import plane from "../assets/plane.png";
 import liquid from "../assets/liquid.png";
 import logistics from "../assets/logistics.png";
