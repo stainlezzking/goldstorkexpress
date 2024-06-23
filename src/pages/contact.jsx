@@ -5,6 +5,7 @@ import SubTitle from "@/components/builders/title.component";
 import banner from "../assets/pages-banner/contact.png";
 import FAQ from "@/components/builders/faq.component";
 import Section from "@/components/builders/section.component";
+import Button from "@/components/builders/button.component";
 
 const maxWidthConstant = "max-w-[1000px]";
 
@@ -13,7 +14,7 @@ export default function Contact() {
     <>
       <Bannersection topic="Contact Us" subtitle="contact" src={banner} />
       <Section>
-        <div className="max-w-[800px] mx-auto bg-secondary py-10">
+        <div className="max-w-[800px] mx-auto bg-secondary py-10 px-10">
           <div className="flex flex-col gap-y-2 items-center">
             <SubTitle color="bg-[#E8E8E8]/10 "> Contact </SubTitle>
             <h1 className="font-semibold text-4xl text-white">Get in touch with us</h1>
@@ -57,12 +58,53 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <form></form>
+          <form className="grid grid-cols-2 gap-4">
+            <div className="col-span-1">
+              <input
+                type="text"
+                placeholder="Your Name*"
+                className=" px-3 text-white placeholder:text-[#E0E0E0] w-full text-lg py-2 border border-[#E0E0E0] bg-transparent"
+              />
+            </div>
+            <div className="col-span-1">
+              <input
+                type="text"
+                placeholder="Email*"
+                className=" px-3 text-white placeholder:text-[#E0E0E0] w-full text-lg py-2 border border-[#E0E0E0] bg-transparent"
+              />
+            </div>
+            <div className="col-span-1">
+              <input
+                type="text"
+                placeholder="Phone Number*"
+                className=" px-3 text-white placeholder:text-[#E0E0E0] w-full text-lg py-2 border border-[#E0E0E0] bg-transparent"
+              />
+            </div>
+            <div className="col-span-1">
+              <input
+                type="text"
+                placeholder="City*"
+                className=" px-3 text-white placeholder:text-[#E0E0E0] w-full text-lg py-2 border border-[#E0E0E0] bg-transparent"
+              />
+            </div>
+            <div className="col-span-2">
+              <textarea
+                name=""
+                rows="8"
+                className=" px-3 text-white placeholder:text-[#E0E0E0] w-full text-lg py-2 border border-[#E0E0E0] bg-transparent"
+                id=""
+              ></textarea>
+            </div>
+            <div className="col-span-full">
+              <Button variation="primary"> Send Message</Button>
+            </div>
+          </form>
         </div>
       </Section>
       <Section className="bg-[#F4F4F4]">
         <FAQ />
       </Section>
+      <Footer />
     </>
   );
 }

@@ -1,10 +1,12 @@
 import Section from "./section.component";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import SubTitle from "./title.component";
 
 export default function FAQ() {
   return (
     <Section>
       <div className={"mx-auto max-w-[800px]"}>
+        <SubTitle color="bg-[#E8E8E8]/50 text-secondary">Faq</SubTitle>
         <h1 className="text-4xl font-bold text-secondary">Frequently Asked Questions</h1>
         <div className="mt-5">
           <Accordion type="single" collapsible className="text-lg">
