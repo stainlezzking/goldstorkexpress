@@ -5,7 +5,7 @@ import Blogs from "./pages/blogs";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import Notfound from "./pages/404";
-import Service from "./pages/service";
+import Services from "./pages/services";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/services",
-        element: <Service />,
+        element: <Services />,
       },
     ],
     errorElement: <Notfound />,

@@ -11,7 +11,7 @@ import FAQ from "@/components/builders/faq.component";
 
 const maxWidthConstant = "max-w-[1000px]";
 
-export default function Service() {
+export default function Services() {
   return (
     <div>
       <Bannersection topic="Our Logistics Service" src={banner} subtitle="Services" />
