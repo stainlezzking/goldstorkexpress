@@ -54,7 +54,9 @@ export default function Contact() {
                   <path d="M32.5 22V31.2058L37.5 35" stroke="white" />
                 </svg>
 
-                <p className="text-sm">Mon - Sat 9.00 - 18.00 Sunday Closed</p>
+                <p className="text-sm">
+                  Mon - Sat 9.00 - 18.00 <br /> Sunday Closed
+                </p>
               </div>
             </div>
           </div>

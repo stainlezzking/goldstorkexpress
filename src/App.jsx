@@ -4,6 +4,7 @@ import Navbar from "./components/builders/navbar.component";
 import Blogs from "./pages/blogs";
 import About from "./pages/about";
 import Contact from "./pages/contact";
+import Notfound from "./pages/404";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
     ],
+    errorElement: <Notfound />,
   },
 ]);
 
