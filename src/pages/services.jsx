@@ -4,10 +4,8 @@ import aboutIntro from "../assets/about-intro.png";
 import Bannersection from "@/components/builders/banner.component";
 import SubTitle from "@/components/builders/title.component";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Ourservices from "@/components/builders/ourservices.component";
 import Footer from "@/components/builders/footer.component";
-import FAQ from "@/components/builders/faq.component";
 
 const maxWidthConstant = "max-w-[1000px]";
 
