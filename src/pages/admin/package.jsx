@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { useReducer, useState } from "react";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { Step1 } from "@/components/builders/admin.package.steps";
+import { Step1, Step2 } from "@/components/builders/admin.package.steps";
 
 /*
 
@@ -12,12 +12,20 @@ departed post office,
 Arrived at
 */
 export default function NewPackage() {
-  const [position, setPosition] = useState(2);
-
+  const [position, setPosition] = useState(1);
+  const [information, setInformation] = useState({});
   const changePosition = function (e) {
     if (position > e) {
       setPosition(e);
     }
+  };
+  const addInformation = function (e, pass) {
+    const copyState = { ...information, ...e };
+    setPosition(copyState);
+    if (!pass) {
+      return setPosition(1);
+    }
+    console.log("should submit the form from her");
   };
   return (
     <>
@@ -38,7 +46,7 @@ export default function NewPackage() {
                 ) : (
                   <span className="me-2">1</span>
                 )}
-                Personal <span className="hidden sm:inline-flex sm:ms-2">Info</span>
+                Registeration <span className="hidden sm:inline-flex sm:ms-2">Info</span>
               </span>
             </li>
             <li
@@ -55,28 +63,11 @@ export default function NewPackage() {
                 ) : (
                   <span className="me-2">2</span>
                 )}
-                Account <span className="hidden sm:inline-flex sm:ms-2">Info</span>
-              </span>
-            </li>
-            <li
-              onClick={() => changePosition(2)}
-              className={`flex md:w-full items-center  ${position > 2 ? "cursor-pointer" : ""} ${
-                position == 2 ? "text-blue-600 dark:text-blue-500" : ""
-              } sm:after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700`}
-            >
-              <span className="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-                {position == 2 ? (
-                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                  </svg>
-                ) : (
-                  <span className="me-2">3</span>
-                )}
-                <span className="hidden sm:inline-flex sm:ms-2">Confirmation</span>
+                Delivery <span className="hidden sm:inline-flex sm:ms-2">Info</span>
               </span>
             </li>
           </ol>
-          {position == 0 ? <Step1 /> : position == 1 ? <h1> Step 2</h1> : <h1> Step 3</h1>}
+          {position == 0 ? <Step1 addInfo={addInformation} /> : <Step2 addInfo={addInformation} />}
         </Card>
       </div>
     </>
