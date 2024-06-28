@@ -7,6 +7,8 @@ import Contact from "./pages/contact";
 import Notfound from "./pages/404";
 import Services from "./pages/services";
 import Service from "./pages/one-service";
+import AdminRoutes from "./pages/admin/routes";
+import AdminRoot from "./pages/admin/root";
 
 const router = createBrowserRouter([
   {
@@ -38,8 +40,15 @@ const router = createBrowserRouter([
         element: <Service />,
       },
     ],
+
     errorElement: <Notfound />,
   },
+  {
+    path: "/admin/",
+    element: <AdminRoot />,
+    children: AdminRoutes,
+  },
+  ,
 ]);
 
 function App() {
