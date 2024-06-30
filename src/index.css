@@ -9,4 +9,8 @@
   .container {
     max-width: 1200px !important;
   }
+  .main-nav a:hover span,
+  .main-nav a.active span {
+    width: 60%;
+  }
 }

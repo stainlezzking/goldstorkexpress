@@ -47,11 +47,11 @@ export default function Home() {
         </div>
       </div>
       <Section>
-        <div className="grid grid-cols-4 gap-x-5 py-10">
+        <div className="grid grid-cols-4 gap-x-5 py-10 group">
           <div className="col-span-full lg:col-span-1 ">
             <div className="space-y-3">
               <SubTitle>What We Do</SubTitle>
-              <h1 className="text-4xl text-secondary font-bold"> Safe & Reliable Cargo Solutions</h1>
+              <h1 className="text-4xl text-secondary font-bold group-hover:text-primary"> Safe & Reliable Cargo Solutions</h1>
             </div>
           </div>
           <div className="col-span-full lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10 py-10 lg:p-10">

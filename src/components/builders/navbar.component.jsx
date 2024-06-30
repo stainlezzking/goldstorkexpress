@@ -162,39 +162,39 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-        <div className="bg-secondary/25 absolute -bottom-[50px] z-10 left-0 w-full max-lg:hidden">
+        <div className="bg-secondary/25 absolute -bottom-[48px] z-10 left-0 w-full max-lg:hidden">
           <div className="container mx-auto">
             <div className="flex justify-between items-end text-white">
-              <div className="gap-x-3 flex py-2">
+              <ul className="gap-x-3 flex main-nav ">
                 <NavLink
-                  className="relative py-3 group px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
+                  className="relative py-3 hover:text-white/80 px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
                   to="/"
                 >
                   <p>Home</p>
-                  <span className="h-[2px] group-hover:w-[60] bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
+                  <span className="h-[2px] transition-[width] duration-600 w-0 bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
                 </NavLink>
                 <NavLink
-                  className="relative py-3 group px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
+                  className="relative py-3 hover:text-white/80 px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
                   to="/about"
                 >
                   <p>About</p>
-                  <span className="h-[2px] group-hover:w-[60] bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
+                  <span className="h-[2px] transition-[width] duration-600 w-0 bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
                 </NavLink>
                 <NavLink
-                  className="relative py-3 group px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
+                  className="relative py-3 hover:text-white/80 px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
                   to="/services"
                 >
                   <p>Services</p>
-                  <span className="h-[2px] group-hover:w-[60] bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
+                  <span className="h-[2px] transition-[width] duration-600 w-0 bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
                 </NavLink>
                 <NavLink
-                  className="relative py-3 group px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
+                  className="relative py-3 hover:text-white/80 px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
                   to="/contact"
                 >
                   <p>Contact</p>
-                  <span className="h-[2px] group-hover:w-[60] bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
+                  <span className="h-[2px] transition-[width] duration-600 w-0 bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
                 </NavLink>
-              </div>
+              </ul>
               <NavLink className="bg-white text-secondary px-5 h-12 hover:text-primary flex items-center  " to="/login">
                 <p>Customer Portal Login </p>
               </NavLink>
