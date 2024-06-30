@@ -79,9 +79,10 @@ export default function Navbar() {
                 </SheetTrigger>
                 <SheetContent className="bg-secondary ">
                   <SheetHeader className="text-white">
+                    <SheetTitle className="sr-only">Side nav links for mobile</SheetTitle>
                     <SheetDescription asChild>
                       <div>
-                        <ul className="space-y-2 text-lg font-medium mt-10">
+                        <ul className="space-y-2 text-lg font-medium mt-10 nav-active-selector">
                           <li>
                             <NavLink to="/" className="py-2 hover:text-white w-full block">
                               Home

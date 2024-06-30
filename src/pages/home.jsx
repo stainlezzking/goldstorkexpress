@@ -22,7 +22,7 @@ export default function Home() {
     <div>
       <div className="relative">
         <img src={banner} alt="" className="max-md:h-[60vh] max-[1200px]:aspect-video object-cover" />
-        <div className="container absolute bottom-20 flex items-end h-full left-1/2 -translate-x-1/2 ">
+        <div className="container absolute top-0 flex items-center h-full left-1/2 -translate-x-1/2 ">
           <div className="caption max-w-[550px]  w-full flex gap-y-10 flex-col">
             <form className="w-full items-center flex ">
               <input
