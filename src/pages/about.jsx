@@ -16,11 +16,11 @@ export default function About() {
     <div>
       <Bannersection topic="About Our Logistics" src={banner} subtitle="About Us" />
       <Section>
-        <div className="grid grid-cols-2 gap-x-10">
+        <div className="grid grid-cols-1 max-[850px]:max-w-[600px] mx-auto  min-[850px]:grid-cols-2 items-center gap-x-5 lg:gap-x-10">
           <div className="col-span-1">
             <img src={aboutIntro} alt="" className="w-full" />
           </div>
-          <div className="col-span-1 px-5 py-10 space-y-4">
+          <div className="col-span-1 md:px-5 py-10 space-y-4">
             <div className="space-y-3">
               <SubTitle color="bg-[#E8E8E8]/50 text-secondary">About Us</SubTitle>
               <h1 className="text-4xl text-secondary">Our Company Overview</h1>
@@ -66,7 +66,7 @@ export default function About() {
           <SubTitle color="bg-[#E8E8E8]/50 text-secondary ">What We Do</SubTitle>
           <h1 className="text-3xl">Our Logistics Services</h1>
         </div>
-        <div className={"grid grid-cols-3 gap-10 py-10 mx-auto " + maxWidthConstant}>
+        <div className={"grid grid-cols-2 md:grid-cols-3 max-md:gap-x-5 gap-10 py-10 mx-auto " + maxWidthConstant}>
           <Ourservices title="Sea Transport Services" body="Following the quality of our service thus having gained trust of our many clients.">
             <svg className="w-12" viewBox="0 0 52 56" fill="none">
               <path d="M25.6602 7.16494V1" stroke="#1C1F35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
