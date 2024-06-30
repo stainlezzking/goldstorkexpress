@@ -15,44 +15,52 @@ import footerImage from "../assets/footer-image.png";
 import Button from "@/components/builders/button.component";
 import Footer from "@/components/builders/footer.component";
 
-const maxWidthConstant = "max-w-[1000px]";
+const maxWidthConstant = "max-w-[1200px]";
 
 export default function Home() {
   return (
     <div>
       <div className="relative">
-        <img src={banner} alt="" className="w-full" />
-        <div className="caption absolute left-9 top-1/2 -translate-y-1/2 w-[550px] flex gap-y-10 flex-col">
-          <form className="w-full items-center flex ">
-            <input
-              type="search"
-              placeholder="Enter Your Tracking Number"
-              className=" py-3 flex-grow  rounded-md rounded-e-none p-3 text-md focus:border-primary focus:outline-none"
-            />
-            <button className="w-[130px] items-center justify-center bg-primary hover:bg-primary/45 text-white self-stretch block">Track</button>
-          </form>
-          <div className="space-y-3">
-            <div className="space-y-5">
-              <SubTitle>Logistics and Supply Chain Solutions</SubTitle>
-              <h1 className="text-6xl font-bold text-white">Your Gateway to any Destination in the World</h1>
+        <img src={banner} alt="" className="max-md:h-[60vh] max-[1200px]:aspect-video object-cover" />
+        <div className="container absolute bottom-20 flex items-end h-full left-1/2 -translate-x-1/2 ">
+          <div className="caption max-w-[550px]  w-full flex gap-y-10 flex-col">
+            <form className="w-full items-center flex ">
+              <input
+                type="search"
+                placeholder="Enter Your Tracking Number"
+                className=" py-3 flex-grow rounded-md rounded-e-none p-3 text-md focus:border-primary focus:outline-none"
+              />
+              <button className="max-md:px-3 md:w-[130px] items-center justify-center bg-primary hover:bg-primary/45 text-white self-stretch block">
+                Track
+              </button>
+            </form>
+            <div className="space-y-3">
+              <div className="space-y-5">
+                <SubTitle>Logistics and Supply Chain Solutions</SubTitle>
+                <h1 className=" text-6xl font-bold text-white max-md:text-2xl max-lg:text-4xl">Your Gateway to any Destination in the World</h1>
+              </div>
+              <p className="font-medium text-white">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus assumenda delectus placeat, iure omnis et laudantium numquam, a quae
+              </p>
             </div>
-            <p className="font-medium text-white">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus assumenda delectus placeat, iure omnis et laudantium numquam, a quae
-            </p>
           </div>
         </div>
       </div>
       <Section>
-        <div className="grid grid-cols-5 gap-x-5 py-10">
-          <div className="col-span-2">
+        <div className="grid grid-cols-4 gap-x-5 py-10">
+          <div className="col-span-full lg:col-span-1 ">
             <div className="space-y-3">
               <SubTitle>What We Do</SubTitle>
               <h1 className="text-4xl text-secondary font-bold"> Safe & Reliable Cargo Solutions</h1>
             </div>
           </div>
-          <div className="col-span-3 grid grid-cols-2 gap-10 p-10">
-            <Whatwedo title="Sea Transport Services" body="Following the quality of our service thus having gained trust of our many clients.">
-              <svg className="w-12" viewBox="0 0 52 56" fill="none">
+          <div className="col-span-full lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-10 py-10 lg:p-10">
+            <Whatwedo
+              className="col-span-1 max-lg:max-w-[350px]"
+              title="Sea Transport Services"
+              body="Following the quality of our service thus having gained trust of our many clients."
+            >
+              <svg className="w-12 max-md:w-10" viewBox="0 0 52 56" fill="none">
                 <path d="M25.6602 7.16494V1" stroke="#1C1F35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 <path
                   d="M50.3195 35.9345C46.5692 49.035 29.2046 53.6073 26.1221 54.3265C25.8187 54.4037 25.5008 54.4037 25.1974 54.3265C22.1149 53.6073 4.75034 49.035 1 35.9345V27.1494C0.999964 26.7167 1.13652 26.295 1.39021 25.9445C1.64389 25.594 2.00176 25.3324 2.4128 25.1972L25.0176 17.6452C25.436 17.5164 25.8835 17.5164 26.3019 17.6452L48.9067 25.1972C49.3178 25.3324 49.6756 25.594 49.9293 25.9445C50.183 26.295 50.3195 26.7167 50.3195 27.1494V35.9345Z"
@@ -80,8 +88,12 @@ export default function Home() {
                 <path d="M48.8613 20.1446V9.37573" stroke="#1C1F35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Whatwedo>
-            <Whatwedo title="Warehousing Services" body="Following the quality of our service thus having gained trust of our many clients.">
-              <svg className="w-12" viewBox="0 0 57 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Whatwedo
+              className="col-span-1 max-lg:max-w-[350px]"
+              title="Warehousing Services"
+              body="Following the quality of our service thus having gained trust of our many clients."
+            >
+              <svg className="w-12 max-md:w-10" viewBox="0 0 57 46" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.33398 45H54.7149" stroke="#141414" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 <path
                   d="M32.7147 45V2.91304C32.7147 2.40567 32.5097 1.91908 32.1448 1.56032C31.7799 1.20155 31.2851 1 30.7691 1H7.42214C6.90614 1 6.41128 1.20155 6.04641 1.56032C5.68154 1.91908 5.47656 2.40567 5.47656 2.91304V45"
@@ -108,8 +120,12 @@ export default function Home() {
                 <path d="M40.0479 26.1428H44.2383" stroke="#141414" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Whatwedo>
-            <Whatwedo title="Warehousing Services" body="Following the quality of our service thus having gained trust of our many clients.">
-              <svg className="w-12" viewBox="0 0 76 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Whatwedo
+              className="col-span-1 max-lg:max-w-[350px]"
+              title="Warehousing Services"
+              body="Following the quality of our service thus having gained trust of our many clients."
+            >
+              <svg className="w-12 max-md:w-10" viewBox="0 0 76 66" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M17.3047 55.4348H53.1743" stroke="#1C1F35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M34.333 40.4766L49.855 31.1317" stroke="#1C1F35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M9.69531 37.8877L15.7105 43.9029" stroke="#1C1F35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -129,8 +145,12 @@ export default function Home() {
                 />
               </svg>
             </Whatwedo>
-            <Whatwedo title="Warehousing Services" body="Following the quality of our service thus having gained trust of our many clients.">
-              <svg className="w-12" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <Whatwedo
+              className="col-span-1 max-lg:max-w-[350px]"
+              title="Warehousing Services"
+              body="Following the quality of our service thus having gained trust of our many clients."
+            >
+              <svg className="w-12 max-md:w-10" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M42.0713 28.7858V18.8215H47.6681C50.5026 18.8215 53.0574 20.5309 54.1387 23.1511L56.1791 28.0951C56.3149 28.4242 56.073 28.7858 55.7169 28.7858H42.0713Z"
                   fill="#FFD550"
@@ -176,9 +196,9 @@ export default function Home() {
           </div>
         </div>
       </Section>
-      <section className={`relative pt-[130px] bg-[url('./container.png')] bg-no-repeat bg-top `}>
-        <div className={"p-16 mx-auto  bg-white grid grid-cols-2 " + maxWidthConstant}>
-          <div className="col-span-1 space-y-3">
+      <section className={`relative  pt-[200px] bg-[url('./container.png')] bg-no-repeat bg-top `}>
+        <div className="p-3 md:p-10 lg:p-20 mx-auto  bg-white grid grid-cols-12  max-lg:max-w-[90%] max-w-[1000px]">
+          <div className="max-lg:mt-10 max-lg:order-2 col-span-full lg:col-span-5 space-y-3">
             <SubTitle> Why Us</SubTitle>
             <h1 className="text-heading text-4xl font-bold">We provide full range global logistics solution</h1>
             <p>
@@ -246,28 +266,28 @@ export default function Home() {
               </li>
             </ul>
           </div>
-          <div className="col-span-1">
-            <img src={plane} alt="" className="w-full" />
+          <div className="max-lg:order-1 col-span-full lg:col-span-7">
+            <img src={plane} alt="" className="max-w-[500px] mx-auto w-full" />
           </div>
         </div>
       </section>
 
-      <div className={"border-t border-b border-[#D4D4D4] mx-auto grid grid-cols-2 " + maxWidthConstant}>
-        <div className="flex gap-x-5 items-center justify-end p-10 ">
-          <h1 className="text-4xl font-bold">1256</h1>
-          <span className="block w-5 h-5 bg-primary"></span>
-          <p className="text-xl"> Delivered Packages</p>
+      <div className={"mt-[112px] border-t border-b border-[#D4D4D4] grid grid-cols-2 max-w-[1000px] mx-auto"}>
+        <div className="flex gap-x-1 items-center justify-end max-md:px-5 p-10 ">
+          <h1 className="text-2xl md:text-4xl font-bold">1256</h1>
+          <span className="block w-5 h-5 max-md:w-2 bg-primary"></span>
+          <p className="md:text-xl"> Delivered Packages</p>
         </div>
-        <div className="flex gap-x-5 items-center justify-start p-10 border-s border-[#D4D4D4] ">
-          <h1 className="text-4xl font-bold">3594</h1>
-          <span className="block w-5 h-5 bg-primary"></span>
-          <p className="text-xl"> Satisfied Clients</p>
+        <div className="flex gap-x-1 items-center justify-start max-md:px-5 p-10 border-s border-[#D4D4D4] ">
+          <h1 className="text-2xl md:text-4xl font-bold">3594</h1>
+          <span className="block w-5 h-5 max-md:w-2 bg-primary"></span>
+          <p className="md:text-xl"> Satisfied Clients</p>
         </div>
       </div>
 
       <div className="py-16 space-y-4 container mx-auto">
         <h1 className="text-2xl text-secondary text-center font-semibold">Transporting Across The World</h1>
-        <div className="grid grid-cols-5 gap-x-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           <div className="col-grid-1 relative">
             <img src={liquid} alt="" />
             <span className="block absolute bottom-0 left-0 bg-gradient-to-t from-black h-1/3  w-full"></span>
@@ -277,7 +297,7 @@ export default function Home() {
             </div>
           </div>
           <div className="col-grid-1 relative">
-            <img src={packagesolution} alt="" />
+            <img src={packagesolution} alt="" className="w-full" />
             <span className="block absolute bottom-0 left-0 bg-gradient-to-t from-black h-1/3  w-full"></span>
             <div className="absolute bottom-0 left-0 w-full text-center py-2">
               <h1 className="font-bold text-white">Package Solutions</h1>
@@ -285,7 +305,7 @@ export default function Home() {
             </div>
           </div>
           <div className="col-grid-1 relative">
-            <img src={logistics} alt="" />
+            <img src={logistics} alt="" className="w-full" />
             <span className="block absolute bottom-0 left-0 bg-gradient-to-t from-black h-1/3  w-full"></span>
             <div className="absolute bottom-0 left-0 w-full text-center py-2">
               <h1 className="font-bold text-white">Contract Logistics</h1>
@@ -293,7 +313,7 @@ export default function Home() {
             </div>
           </div>
           <div className="col-grid-1 relative">
-            <img src={warehouse} alt="" />
+            <img src={warehouse} alt="" className="w-full" />
             <span className="block absolute bottom-0 left-0 bg-gradient-to-t from-black h-1/3  w-full"></span>
             <div className="absolute bottom-0 left-0 w-full text-center py-2">
               <h1 className="font-bold text-white">Warehouse & Distribution</h1>
@@ -301,7 +321,7 @@ export default function Home() {
             </div>
           </div>
           <div className="col-grid-1 relative">
-            <img src={specializedtransport} alt="" />
+            <img src={specializedtransport} alt="" className="w-full" />
             <span className="block absolute bottom-0 left-0 bg-gradient-to-t from-black h-1/2  w-full"></span>
             <div className="absolute bottom-0 left-0 w-full text-center py-2">
               <h1 className="font-bold text-white">Specialized Transport</h1>
@@ -311,12 +331,12 @@ export default function Home() {
         </div>
       </div>
 
-      <section className={"py-16 mx-auto " + maxWidthConstant}>
+      <section className={"py-16 mx-auto max-lg:container max-w-[950px] space-y-[39px]"}>
         <div className="flex flex-col items-center gap-y-2">
           <SubTitle> Our Blogs</SubTitle>
           <h1 className="text-3xl">Our Latest News</h1>
         </div>
-        <div className="pt-4">
+        <div className="pt-4 space-y-9">
           <BlogPreview />
           <BlogPreview />
           <BlogPreview />

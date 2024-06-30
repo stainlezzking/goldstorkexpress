@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const maxWidthConstant = "max-w-[1000px]";
+const maxWidthConstant = "max-w-[1200px]";
 
 export default function Footer({ children }) {
   return (
@@ -19,7 +19,7 @@ export default function Footer({ children }) {
         </div>
       </div>
       <div className={"mx-auto " + maxWidthConstant}>
-        <div className="w-fit p-7 pb-1 grid grid-cols-5">
+        <div className="w-fit p-7 lg:pb-1 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
           <div className="col-span-2">
             <p className="text-[#E8E8E8]">
               Leverage agile frameworks to provide a robust synopsis for strategy collaborative thinking to further the overall value proposition.
