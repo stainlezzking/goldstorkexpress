@@ -9,6 +9,7 @@ import Services from "./pages/services";
 import Service from "./pages/one-service";
 import AdminRoutes from "./pages/admin/routes";
 import AdminRoot from "./pages/admin/root";
+import Track from "./pages/track";
 
 const router = createBrowserRouter([
   {
@@ -39,8 +40,11 @@ const router = createBrowserRouter([
         path: "/service/",
         element: <Service />,
       },
+      {
+        path: "track",
+        element: <Track />,
+      },
     ],
-
     errorElement: <Notfound />,
   },
   {
