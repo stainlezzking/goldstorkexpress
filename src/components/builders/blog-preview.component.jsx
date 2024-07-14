@@ -5,8 +5,7 @@ import blog_3 from "../../assets/blog-3.png";
 import Button from "./button.component";
 
 const selector = [blog_1, blog_2, blog_3];
-export default function BlogPreview({ preview, index }) {
-  console.log(selector[index]);
+export default function BlogPreview({ preview, index, id }) {
   const navigate = useNavigate();
   return (
     <div className="max-md:flex-wrap gap-y-10 max-md:w-[500px] max-md:mx-auto flex gap-x-5 pt-[29px] border-t border-[#D6D6D6] max-w-full pb-5 ">
@@ -38,7 +37,7 @@ export default function BlogPreview({ preview, index }) {
           {preview.title}
         </Link>
         <p className="text-paragraph">{preview.summary}</p>
-        <Button variation="default" className="px-2 py-1" onClick={() => navigate("/blogs/" + preview._id)}>
+        <Button variation="default" onClick={() => navigate("/blogs/" + id)}>
           Read More
         </Button>
       </div>

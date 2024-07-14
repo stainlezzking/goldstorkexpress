@@ -11,14 +11,14 @@ export default function Blogs() {
   return (
     <>
       <Bannersection topic="All Blogs" src={banner} subtitle="All blogs" />
-      <section className={"py-24 mx-auto " + maxWidthConstant}>
+      <section className={"max-sm:px-10 py-24 mx-auto " + maxWidthConstant}>
         <div className="flex flex-col items-center gap-y-2">
           <SubTitle> Our Blogs</SubTitle>
           <h1 className="text-3xl">Our Latest News</h1>
         </div>
         <div className="pt-4">
           {blogs.map((blog, i) => (
-            <BlogPreview preview={blog.preview} key={i} index={i} />
+            <BlogPreview preview={blog.preview} key={i} index={i} id={blog._id} />
           ))}
         </div>
       </section>

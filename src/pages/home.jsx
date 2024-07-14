@@ -339,7 +339,7 @@ export default function Home() {
         </div>
         <div className="pt-4 space-y-9">
           {blogs.map((blog, i) => (
-            <BlogPreview preview={blog.preview} key={i} index={i} />
+            <BlogPreview preview={blog.preview} key={i} index={i} id={blog._id} />
           ))}
         </div>
         <div className="pt-5">
