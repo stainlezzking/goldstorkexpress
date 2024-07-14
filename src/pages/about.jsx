@@ -17,6 +17,8 @@ import Button from "@/components/builders/button.component";
 import ServicesComp from "@/components/builders/services.component";
 const maxWidthConstant = "max-w-[1000px]";
 
+import faq from "../faq.json";
+
 export default function About() {
   return (
     <div>
@@ -29,37 +31,47 @@ export default function About() {
           <div className="col-span-1 md:px-5 py-10 space-y-4">
             <div className="space-y-3">
               <SubTitle color="bg-[#E8E8E8]/50 text-secondary">About Us</SubTitle>
-              <h1 className="text-4xl text-secondary">Our Company Overview</h1>
+              <h1 className="text-4xl text-secondary font-medium">Our Company Overview</h1>
               <p className="text-paragraph">
-                Leverage agile frameworks to provide a robust synopsis for strategy foster collaborative thinking to further the overall value
+                Utilize agile frameworks to deliver a comprehensive strategy overview, encouraging collaborative thinking to enhance the overall value
                 proposition.
               </p>
             </div>
             <div>
               <Tabs defaultValue="account" className="flex flex-col justify-center py-3 space-y-2">
                 <TabsList className="w-full px-2 space-x-2">
-                  <TabsTrigger value="approach" className="w-1/3">
+                  <TabsTrigger value="account" className="w-1/3">
                     Account
                   </TabsTrigger>
                   <TabsTrigger value="password" className="w-1/3">
-                    Password
+                    Sustainability
                   </TabsTrigger>
-                  <TabsTrigger value="account" className="w-1/3">
+                  <TabsTrigger value="approach" className="w-1/3">
                     Our Approach
                   </TabsTrigger>
                 </TabsList>
                 <div className="justify-self-stretch">
-                  <TabsContent value="approach">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta vero molestias inventore. Commodi pariatur magnam ratione itaque
-                    fuga illum perferendis maiores dolorem saepe, ipsa praesentium vero officiis illo accusamus laudantium aperiam qui ad distinctio
-                    impedit! Nihil quo rem voluptatum molestias.
-                  </TabsContent>
-                  <TabsContent value="password">Change your password here.</TabsContent>
                   <TabsContent value="account">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At repellendus obcaecati consectetur, sapiente dolorum, animi tempora
-                    accusamus mollitia, rerum perspiciatis impedit ipsum. Molestiae doloribus delectus nobis voluptate repudiandae libero
-                    necessitatibus quae, illo assumenda, aperiam obcaecati velit similique quia voluptatem unde atque deserunt, labore distinctio
-                    ratione ipsa nostrum! Aliquam vel ut ab at non!
+                    At GoldStorkExpress, we redefine delivery with a commitment to reliability, efficiency, and unparalleled customer service. Based
+                    in the heart of England, we pride ourselves on connecting businesses and individuals across the globe with seamless logistics
+                    solutions. Whether you're sending a parcel across town or shipping freight internationally, GoldStorkExpress is your trusted
+                    partner every step of the way.
+                  </TabsContent>
+                  <TabsContent value="password">
+                    As the world’s leading logistics company, we have a responsibility to set an example in our industry and be a sustainability
+                    leader. That means reducing our carbon footprint and setting the highest social and governance standards. Over the years, we have
+                    repeatedly redefined logistics, from pioneering the first green logistics product to becoming the first logistics company to
+                    commit to a zero-emissions target. Today we offer the most comprehensive portfolio of green logistics solutions in the industry.
+                    <br />
+                    <br />
+                    Sustainability is our responsibility – the decisions we make today can make a positive impact on tomorrow. Discover how our green
+                    logistics products and solutions can minimize your carbon emissions without compromising your supply chain.
+                  </TabsContent>
+                  <TabsContent value="approach">
+                    GoldStorkExpress began with a vision to revolutionize the logistics industry. With a foundation built on decades of expertise and
+                    a deep understanding of global shipping dynamics, we have grown to become a cornerstone in the delivery sector. Our journey is
+                    shaped by a relentless pursuit of excellence, ensuring that every package entrusted to us arrives on time and in pristine
+                    condition.
                   </TabsContent>
                 </div>
               </Tabs>
@@ -68,15 +80,15 @@ export default function About() {
         </div>
       </Section>
       <ServicesComp />
-      <FAQ />
+      <FAQ faq={faq} />
 
       <Section className="bg-[#F4F4F4]">
         <h1 className="text-4xl font-bold">Request a Business Account</h1>
         <span className="block bg-red-600 w-10 h-1 mt-3"></span>
-        <h2 className="text-xl font-medium text-center max-w-[500px] mx-auto my-5">
+        <h2 className="text-xl text-gray-600 text-center max-w-[500px] mx-auto my-5">
           Almost ready to start enjoying the benefits of a DHL Express business account. Choose your preferred option below to proceed.
         </h2>
-        <div className={"flex justify-center gap-x-10 py-10 mx-auto " + maxWidthConstant}>
+        <div className={"max-sm:space-y-10 sm:flex justify-center gap-x-10 py-10 mx-auto " + maxWidthConstant}>
           <div className="shadow max-w-[350px] space-y-3 p-10 bg-white">
             <div className="space-y-1">
               <svg className="w-12" fill="currentColor" viewBox="0 0 48 48">

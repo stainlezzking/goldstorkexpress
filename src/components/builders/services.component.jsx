@@ -11,7 +11,7 @@ export default function ServicesComp() {
         <SubTitle color="bg-[#E8E8E8]/50 text-secondary ">What We Do</SubTitle>
         <h1 className="text-3xl">Our Logistics Services</h1>
       </div>
-      <div className={"grid grid-cols-2 md:grid-cols-3 max-md:gap-x-5 gap-10 py-10 mx-auto " + maxWidthConstant}>
+      <div className={"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 max-md:gap-x-5 gap-10 py-10 mx-auto " + maxWidthConstant}>
         <Ourservices
           title="Sea Transport Services"
           body="We provide reliable and efficient sea transport services, ensuring your goods are shipped safely and on time across international waters."

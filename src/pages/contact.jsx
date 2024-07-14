@@ -8,6 +8,7 @@ import Section from "@/components/builders/section.component";
 import Button from "@/components/builders/button.component";
 
 const maxWidthConstant = "max-w-[1000px]";
+import faq from "../faq.json";
 
 export default function Contact() {
   return (
@@ -104,7 +105,7 @@ export default function Contact() {
         </div>
       </Section>
       <Section className="bg-[#F4F4F4]">
-        <FAQ />
+        <FAQ faq={faq} />
       </Section>
       <Footer />
     </>

@@ -15,9 +15,12 @@ import footerImage from "../assets/footer-image.png";
 import Button from "@/components/builders/button.component";
 import Footer from "@/components/builders/footer.component";
 
+import blogs from "../database.json";
+import { useNavigate } from "react-router-dom";
 const maxWidthConstant = "max-w-[1200px]";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="relative">
@@ -37,11 +40,9 @@ export default function Home() {
             <div className="space-y-3">
               <div className="space-y-5">
                 <SubTitle>Logistics and Supply Chain Solutions</SubTitle>
-                <h1 className=" text-6xl font-bold text-white max-md:text-2xl max-lg:text-4xl">Your Gateway to any Destination in the World</h1>
+                <h1 className=" text-6xl font-bold text-white max-md:text-2xl max-lg:text-4xl">Your gateway to every destination worldwide</h1>
               </div>
-              <p className="font-medium text-white">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus assumenda delectus placeat, iure omnis et laudantium numquam, a quae
-              </p>
+              <p className="font-medium text-white">Explore seamless connections to destinations across the globe.</p>
             </div>
           </div>
         </div>
@@ -331,17 +332,21 @@ export default function Home() {
         </div>
       </div>
 
-      <section className={"py-16 mx-auto max-lg:container max-w-[950px] space-y-[39px]"}>
+      <section className={"py-16 mx-auto max-lg:container max-w-[800px] space-y-[15px]"}>
         <div className="flex flex-col items-center gap-y-2">
           <SubTitle> Our Blogs</SubTitle>
           <h1 className="text-3xl">Our Latest News</h1>
         </div>
         <div className="pt-4 space-y-9">
-          <BlogPreview />
-          <BlogPreview />
-          <BlogPreview />
+          {blogs.map((blog, i) => (
+            <BlogPreview preview={blog.preview} key={i} index={i} />
+          ))}
         </div>
-        <Button> More Blog </Button>
+        <div className="pt-5">
+          <Button variation="primary" onClick={() => navigate("/blogs")}>
+            More Blog
+          </Button>
+        </div>
       </section>
 
       <div>

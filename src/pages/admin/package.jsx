@@ -11,7 +11,7 @@ GSE in possesion of item,
 departed post office,
 Arrived at
 */
-export default function NewPackage() {
+export default function Package() {
   const [position, setPosition] = useState(1);
   const [information, setInformation] = useState({});
   const changePosition = function (e) {

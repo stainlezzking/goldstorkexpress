@@ -1,6 +1,7 @@
 import Dashboard from "./dashboard";
 import Admin_Login from "./login";
-import NewPackage from "./package";
+import NewPackage from "./newpackage";
+import Package from "./package";
 
 const AdminRoutes = [
   {
@@ -13,6 +14,10 @@ const AdminRoutes = [
   },
   {
     path: "package",
+    element: <Package />,
+  },
+  {
+    path: "newpackage",
     element: <NewPackage />,
   },
 ];

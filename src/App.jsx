@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         element: <Track />,
       },
     ],
-    errorElement: <Notfound />,
+    // errorElement: <Notfound />,
   },
   {
     path: "/admin/",

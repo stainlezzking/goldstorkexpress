@@ -1,9 +1,16 @@
-import { Link } from "react-router-dom";
-import image1 from "../../assets/image1.png";
-export default function BlogPreview({ children }) {
+import { Link, useNavigate } from "react-router-dom";
+import blog_1 from "../../assets/blog-1.png";
+import blog_2 from "../../assets/blog-2.png";
+import blog_3 from "../../assets/blog-3.png";
+import Button from "./button.component";
+
+const selector = [blog_1, blog_2, blog_3];
+export default function BlogPreview({ preview, index }) {
+  console.log(selector[index]);
+  const navigate = useNavigate();
   return (
-    <div className="max-md:flex-wrap gap-y-10 max-md:w-[500px] max-md:mx-auto flex gap-x-5 pt-[29px] border-t border-[#D6D6D6] max-w-full ">
-      <img src={image1} alt="" className="aspect-video max-md:flex-grow self-start w-2/5 object-cover" />
+    <div className="max-md:flex-wrap gap-y-10 max-md:w-[500px] max-md:mx-auto flex gap-x-5 pt-[29px] border-t border-[#D6D6D6] max-w-full pb-5 ">
+      <img src={selector[index]} alt="" className="aspect-video max-md:flex-grow self-start w-2/5 object-cover" />
       <div className="text-center">
         <svg className="w-10 block mx-auto" viewBox="0 0 53 58" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="11" y="28" width="6" height="6" stroke="#1C1F35" strokeLinecap="round" strokeLinejoin="round" />
@@ -23,21 +30,17 @@ export default function BlogPreview({ children }) {
           <path d="M12.667 1V10.3333" stroke="#1C1F35" strokeLinecap="round" strokeLinejoin="round" />
           <path d="M1 19.667H52.3333" stroke="#1C1F35" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
-        <h1 className="text-2xl font-semibold text-secondary">18</h1>
-        <p className="text-paragraph text-sm">September</p>
+        <h1 className="text-2xl font-semibold text-secondary">{preview.date.day}</h1>
+        <p className="text-paragraph text-sm">{preview.date.month}</p>
       </div>
       <div className="basis-full md:border-s border-[#D6D6D6] min-h-[200px] md:px-5 space-y-3">
-        <Link className="text-xl md:text-2xl hover:text-primary">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum eius asperiores </Link>
-        <p className="text-paragraph">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui beatae eveniet consequatur et. Possimus, facere voluptatem! Sunt assumenda
-          consequatur natus neque molestias esse, soluta officia id?
-        </p>
-        <ul className="list-disc ps-6">
-          <li>Urgent transport solutions</li>
-          <li>Reliable & experienced staffs</li>
-          <li>Urgent transport solutions</li>
-          <li>Reliable & experienced staffs</li>
-        </ul>
+        <Link to={"/blogs/" + preview._id} className="text-xl md:text-2xl hover:text-primary">
+          {preview.title}
+        </Link>
+        <p className="text-paragraph">{preview.summary}</p>
+        <Button variation="default" className="px-2 py-1" onClick={() => navigate("/blogs/" + preview._id)}>
+          Read More
+        </Button>
       </div>
     </div>
   );

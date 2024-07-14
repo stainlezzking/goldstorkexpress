@@ -9,13 +9,14 @@ import Button from "@/components/builders/button.component";
 import { Clipboard, Flowbite } from "flowbite-react";
 
 const maxWidthConstant = "max-w-[1000px]";
-
+import faq from "../faq.json";
+import Tracker from "@/components/builders/track.component";
 export default function Track() {
   return (
     <>
-      <Bannersection topic="Contact Us" subtitle="contact" src={banner} />
+      <Bannersection topic="GPS Tracker" subtitle="Track" src={banner} />
       <Section className={"mx-auto " + maxWidthConstant}>
-        <div className="max-w-800px mx-auto p-10 flex justify-between text-secondary">
+        <div className="max-w-[800px] mx-auto p-10 flex justify-between text-secondary">
           <h1 className="font-bold text-3xl">
             GSE Tracking<sup>®</sup>
           </h1>
@@ -25,10 +26,10 @@ export default function Track() {
         </div>
         <div className="pt-10 font-bold text-secondary">
           <p>Tracking Number:</p>
-          <h1 className="text-3xl">928171000000000002145</h1>
+          <h1 className="text-3xl">92817100000002145</h1>
           <div className="flex justify-between max-w-[600px]">
-            <button className="gap-x-2 mt-1 flex ">
-              <svg className="w-6" viewBox="0 0 24 24" fill="none">
+            <button className="gap-x-2 mt-1 flex items-center">
+              <svg className="w-4" viewBox="0 0 24 24" fill="none">
                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                 <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
@@ -46,23 +47,40 @@ export default function Track() {
                   ></path>
                 </g>
               </svg>
-              <p>Copy</p>
+              <p className="text-sm">Copy</p>
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 py-5">
-          <div className="p-5 space-y-2 col-span-1 max-w-[450px] before:w-2 before:h-full before:bg-secondary bg-secondary/20">
+        <div className="grid grid-cols-2 py-5 items-start">
+          <div className="p-5 space-y-2 col-span-1 max-w-[450px] bg-secondary/20 relative before:w-2 before:h-full before:bg-secondary before:absolute before:top-0 before:left-0">
             <h1 className="text-lg text-secondary font-medium">Latest Update</h1>
             <p className="text-secondary text-sm border-b border-b-secondary pb-5">
               Your item was delivered to an individual at the address at 12:41 pm on November 2, 2022 in BALDWIN PARK, CA 91706. The item was signed
               for by C LOPEZ.
             </p>
-            <div className="mt-5"></div>
+            <div className="mt-5">
+              <h1 className="font-medium text-secondary">Get More Out of USPS Tracking:</h1>
+            </div>
+          </div>
+          <div className="col-span-1 px-5">
+            <Tracker />
+            <Tracker />
+            <Tracker />
+            <div className="ps-5 pb-6 relative text-secondary">
+              <div className="absolute top-0 -left-[8px] w-5 h-5 bg-white flex items-center justify-center">
+                <span className="rounded-full bg-secondary block w-[60%] h-[60%]"> </span>
+              </div>
+              <div className="space-y-2">
+                <div>
+                  <h1 className="text-sm hover:text-secondary/70 font-medium cursor-pointer">Hide tracker </h1>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </Section>
       <Section className="bg-[#F4F4F4]">
-        <FAQ />
+        <FAQ faq={faq} />
       </Section>
       <Footer />
     </>
