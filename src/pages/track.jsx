@@ -10,8 +10,33 @@ import { Clipboard, Flowbite } from "flowbite-react";
 
 const maxWidthConstant = "max-w-[1000px]";
 import faq from "../faq.json";
-import Tracker from "@/components/builders/track.component";
+import Tracker, { SkeletonTraker } from "@/components/builders/track.component";
+import { useEffect, useState } from "react";
+import schemaFormat from "@/components/utilities";
+import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
+
+/*
+I WANT TO SHOW A SKELETON LOADING PAGE BEFORE
+*/
 export default function Track() {
+  const [info, setInfo] = useState();
+  useEffect(function () {
+    setTimeout(function () {
+      const tracker = schemaFormat({
+        loc1_date: "2024-07-14T20:29",
+        loc1_location: "first location",
+        loc1_name: "name of facility",
+        loc2_date: "2024-07-14T20:30",
+        loc2_location: "name of Facility",
+        loc2_name: "second location",
+        office1_date: "2024-07-14T20:29",
+        office2_date: "2024-07-14T20:29",
+        office_loc: "office location",
+      });
+      setInfo(tracker);
+    }, 5000);
+  }, []);
   return (
     <>
       <Bannersection topic="GPS Tracker" subtitle="Track" src={banner} />
@@ -52,32 +77,63 @@ export default function Track() {
           </div>
         </div>
         <div className="grid grid-cols-2 py-5 items-start">
-          <div className="p-5 space-y-2 col-span-1 max-w-[450px] bg-secondary/20 relative before:w-2 before:h-full before:bg-secondary before:absolute before:top-0 before:left-0">
-            <h1 className="text-lg text-secondary font-medium">Latest Update</h1>
-            <p className="text-secondary text-sm border-b border-b-secondary pb-5">
-              Your item was delivered to an individual at the address at 12:41 pm on November 2, 2022 in BALDWIN PARK, CA 91706. The item was signed
-              for by C LOPEZ.
-            </p>
-            <div className="mt-5">
-              <h1 className="font-medium text-secondary">Get More Out of USPS Tracking:</h1>
-            </div>
-          </div>
-          <div className="col-span-1 px-5">
-            <Tracker />
-            <Tracker />
-            <Tracker />
-            <div className="ps-5 pb-6 relative text-secondary">
-              <div className="absolute top-0 -left-[8px] w-5 h-5 bg-white flex items-center justify-center">
-                <span className="rounded-full bg-secondary block w-[60%] h-[60%]"> </span>
+          {info ? (
+            <div className="p-5 space-y-2 col-span-1 max-w-[450px] bg-secondary/20 relative before:w-2 before:h-full before:bg-secondary before:absolute before:top-0 before:left-0">
+              <h1 className="text-lg text-secondary font-medium">Latest Update</h1>
+              <p className="text-secondary text-sm border-b border-b-secondary pb-5">
+                Your item was delivered to an individual at the address at 12:41 pm on November 2, 2022 in BALDWIN PARK, CA 91706. The item was signed
+                for by C LOPEZ.
+              </p>
+              <div className="mt-5">
+                <h1 className="font-medium text-secondary">Get More Out of USPS Tracking:</h1>
               </div>
-              <div className="space-y-2">
-                <div>
-                  <h1 className="text-sm hover:text-secondary/70 font-medium cursor-pointer">Hide tracker </h1>
+            </div>
+          ) : (
+            <div className="space-y-5">
+              <Skeleton className="h-[150px] rounded-md w-full" />
+              <Skeleton className="h-4  w-full" />
+            </div>
+          )}
+          {info ? (
+            <div className="col-span-1 px-5">
+              {info.map((track, i) => (
+                <Tracker key={i} track={track} h1Class="text-lg" pClass="text-base" />
+              ))}
+              <div className="ps-5 pb-6 relative text-secondary">
+                <div className="absolute top-0 -left-[8px] w-5 h-5 bg-white flex items-center justify-center">
+                  <span className="rounded-full bg-secondary block w-[60%] h-[60%]"> </span>
+                </div>
+                <div className="space-y-2">
+                  <div>
+                    <h1 className="text-sm hover:text-secondary/70 font-medium cursor-pointer">Hide tracker </h1>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="col-span-1 px-5">
+              {Array(4)
+                .fill(1)
+                .map((_, i) => (
+                  <SkeletonTraker key={i} />
+                ))}
+              <div className="ps-5 pb-6 relative text-secondary">
+                <div className="absolute top-0 -left-[8px] w-5 h-5 bg-white flex items-center justify-center">
+                  <span className="rounded-full bg-secondary block w-[60%] h-[60%]"> </span>
+                </div>
+                <div className="space-y-2">
+                  <div>
+                    <Skeleton className="h-4 w-[100px]" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
+      </Section>
+      <Section>
+        <h1 className="text-secondary text-lg">Search another package</h1>
+        <Input type="text" className="border-slate-500 text-xl py-7" />
       </Section>
       <Section className="bg-[#F4F4F4]">
         <FAQ faq={faq} />
