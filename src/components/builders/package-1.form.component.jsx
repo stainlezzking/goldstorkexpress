@@ -16,15 +16,6 @@ export const Form1 = function ({ handleForm1Submit, currentState }) {
     console.log(data);
     // format date Month, day,Year
   };
-  // const handleInputChange = function (e) {
-  //   const newUpdated = { ...mainInformation, [e.target.getAttribute("name")]: e.target.value.trim() };
-  //   setMain(newUpdated);
-  // };
-  // const handleSubmit = function (e) {
-  //   e.preventDefault();
-  //   handleForm1Submit(mainInformation, true);
-  //   window.scrollTo(0, 0);
-  // };
   return (
     <>
       <main>

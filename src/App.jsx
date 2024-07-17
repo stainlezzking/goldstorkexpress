@@ -12,8 +12,11 @@ import AdminRoot from "./pages/admin/root";
 import Track from "./pages/track";
 import Oneblog from "./pages/one-blog";
 import blogs from "./database.json";
+import { onAuthChange } from "./components/firebase";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { saveUser } from "./redux/reducer";
 const blogsLoader = function ({ params }) {
-  console.log(params.id);
   const result = blogs.find((blog) => blog._id == params.id);
   if (!result) throw new Error("404 Page Not Found! Custom.");
   return result;
@@ -69,6 +72,17 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const unsubscribe = onAuthChange(function (user) {
+      if (user) {
+        const { uid, email, displayName } = user;
+        return dispatch(saveUser({ isLoading: false, user: { uid, email, displayName } }));
+      }
+      return dispatch(saveUser({ isLoading: false, user: null }));
+    });
+    return unsubscribe;
+  }, []);
   return <RouterProvider router={router} />;
 }
 

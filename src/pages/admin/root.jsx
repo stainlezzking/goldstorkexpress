@@ -1,6 +1,26 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { logOut } from "@/components/firebase";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 export default function AdminRoot() {
+  const { isLoading, user } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
+  /*
+  I want to check if on reload.
+  because the authChange observer has not observed the state change
+  this means that the user will always be null because there is no direct link linking to 
+  the admin
+  */
+  const handleLogout = async function () {
+    await logOut();
+  };
+  useEffect(() => {
+    if (!window.location.href.endsWith("/admin/") && !user && !isLoading) {
+      return navigate("/");
+    }
+  });
   return (
     <>
       <div className="min-h-screen flex flex-col justify-between">
@@ -25,10 +45,15 @@ export default function AdminRoot() {
           <NavLink className={({ _, isActive }) => (isActive ? "font-medium text-secondary/90 underline" : "")} to="/admin/newpackage">
             Create Package
           </NavLink>
+          <button
+            onClick={() => handleLogout()}
+            className="font-medium text-orange-700 hover:text-white hover:bg-orange-700 px-3 "
+            to="/admin/newpackage"
+          >
+            Logout
+          </button>
         </div>
-        <div className="flex-grow justify-stretch flex items-stretch">
-          <Outlet />
-        </div>
+        <div className="flex-grow justify-stretch flex items-stretch">{isLoading ? <h1> Loading</h1> : <Outlet />}</div>
       </div>
     </>
   );

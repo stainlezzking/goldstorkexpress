@@ -1,41 +1,31 @@
+import TrackerPreview, { SkeletonTrackerPreview } from "@/components/builders/track.preview.admin";
+import { getTrackersThunk } from "@/redux/reducer";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
+  const { data, isLoading } = useSelector((state) => state.trackers);
+  useEffect(function () {
+    dispatch(getTrackersThunk());
+  }, []);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 bg-secondary/20 p-10 mx-auto items-start">
-      <div className="bg-white rounded-lg p-5 col-span-1">
-        <p>1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed</p>
-        <h1 className="text-font-medium"> Name : John Snow</h1>
-        <h1 className="text-font-medium"> Phone : +991 289348043</h1>
-        <h1 className="text-font-medium"> Posted on : John Snow</h1>
-        <span>Delivery date : 27th July 2024</span>
-        <div className="flex justify-between py-2">
-          <Link className="underline block hover:text-secondary/80 text-secondary">Edit</Link>
-          <Link className="underline block text-red-600">Delete</Link>
+    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 bg-secondary/20 p-10 mx-auto items-start w-full max-w-[800px]">
+      {!isLoading &&
+        Array(5)
+          .fill(null)
+          .map((_, i) => <SkeletonTrackerPreview key={i} />)}
+      {!data.length ? (
+        <div className="h-full w-full flex items-center flex-col justify-center">
+          <h1 className="text-lg"> You have no Previous tracker </h1>
+          <Link to="/admin/newpackage" className="text-secondary underline">
+            Create new Package
+          </Link>
         </div>
-      </div>
-      <div className="bg-white rounded-lg p-5 col-span-1">
-        <p>1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed</p>
-        <h1 className="text-font-medium"> Name : John Snow</h1>
-        <h1 className="text-font-medium"> Phone : +991 289348043</h1>
-        <h1 className="text-font-medium"> Posted on : John Snow</h1>
-        <span>Delivery date : 27th July 2024</span>
-        <div className="flex justify-between py-2">
-          <Link className="underline block hover:text-secondary/80 text-secondary">Edit</Link>
-          <Link className="underline block text-red-600">Delete</Link>
-        </div>
-      </div>
-      <div className="bg-white rounded-lg p-5 col-span-1">
-        <p>1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed</p>
-        <h1 className="text-font-medium"> Name : John Snow</h1>
-        <h1 className="text-font-medium"> Phone : +991 289348043</h1>
-        <h1 className="text-font-medium"> Posted on : John Snow</h1>
-        <span>Delivery date : 27th July 2024</span>
-        <div className="flex justify-between py-2">
-          <Link className="underline block hover:text-secondary/80 text-secondary">Edit</Link>
-          <Link className="underline block text-red-600">Delete</Link>
-        </div>
-      </div>
+      ) : (
+        data.map((tracker, i) => <TrackerPreview key={i} />)
+      )}
     </div>
   );
 }
