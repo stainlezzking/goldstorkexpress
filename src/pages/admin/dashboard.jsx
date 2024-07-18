@@ -17,7 +17,7 @@ export default function Dashboard() {
           .fill(null)
           .map((_, i) => <SkeletonTrackerPreview key={i} />)}
       {!data.length ? (
-        <div className="h-full w-full flex items-center flex-col justify-center">
+        <div className="h-full col-span-full flex items-center flex-col justify-center">
           <h1 className="text-lg"> You have no Previous tracker </h1>
           <Link to="/admin/newpackage" className="text-secondary underline">
             Create new Package

@@ -1,4 +1,4 @@
-import { createTracker, getTrackers } from "@/components/firebase";
+import { getTrackers } from "@/components/firebase";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getTrackersThunk = createAsyncThunk("tracker/getTracker", async () => {
@@ -9,21 +9,6 @@ export const getTrackersThunk = createAsyncThunk("tracker/getTracker", async () 
       isLoading: false,
       success: true,
       data: arr,
-    };
-  } catch (e) {
-    return {
-      error: e.message,
-      success: false,
-      isLoading: false,
-    };
-  }
-});
-export const addTrackersThunk = createAsyncThunk("tracker/addTracker", async () => {
-  try {
-    const trackers = await createTracker();
-    return {
-      success: true,
-      data: trackers.then((d) => d.forEach((doc) => jobs.push({ id: arr.id, ...doc.data() }))),
     };
   } catch (e) {
     return {
@@ -58,11 +43,11 @@ const wholeStore = createSlice({
         console.log("fetching trackers");
       })
       .addCase(getTrackersThunk.fulfilled, (state, action) => {
-        console.log("from the fufiled payload", action.payload);
+        state.trackers = action.payload;
         // action.load
         // state.trackers
       });
-    builder.addCase(addTrackersThunk.fulfilled, (state, action) => {});
+    // builder.addCase(addTrackersThunk.fulfilled, (state, action) => {});
   },
 });
 

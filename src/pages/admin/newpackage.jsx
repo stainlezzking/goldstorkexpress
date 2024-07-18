@@ -3,6 +3,8 @@ import { useState } from "react";
 // import { ToastContainer } from "react-toastify";
 import { Form1 } from "@/components/builders/package-1.form.component";
 import { Form2 } from "@/components/builders/package-2.form.component";
+import { createTracker } from "@/components/firebase";
+import { useNavigate } from "react-router-dom";
 
 const x = {
   loc1_date: "2024-07-14T20:29",
@@ -19,29 +21,22 @@ const x = {
 function NewPackage() {
   const [position, setPosition] = useState(1);
   const [form1, setForm1] = useState(x);
-  // const [form2, setForm2] = useState({});
   const [loading, setLoading] = useState(false);
-
-  const handleCreate = async function (user) {
-    alert("this is supposed to create a user");
-  };
+  const navigate = useNavigate();
   const handleForm1Submit = function (data) {
     setForm1(data);
     setPosition(1);
     return;
   };
-  const handleForm2Submit = function (data) {
-    setForm2(data);
-    // make post request to save data
+  const handleForm2Submit = async function () {
     setLoading(true);
-    const { name } = form1;
-    const rand = Math.ceil(Math.random() * 1000000);
-    const code =
-      name.split(" ").length > 1
-        ? name.split(" ")[0][0].toUpperCase() + name.split(" ")[1][0].toUpperCase() + rand
-        : name.split(" ")[0][0].toUpperCase() + "A" + rand;
-    // it is in this form that it switches to position 2
-    handleCreate({ ...form1, ...data, code });
+    const result = await createTracker(form1);
+    if (result.success) {
+      return navigate("/track/" + result.id);
+    }
+    // an error occured
+    console.log(result.message);
+    alert("An Error occured, check the console or contact the developer");
   };
 
   return (
@@ -64,7 +59,7 @@ function NewPackage() {
           {position == 0 ? (
             <Form1 currentState={form1} handleForm1Submit={handleForm1Submit} />
           ) : (
-            <Form2 currentState={form1} handleForm2Submit={handleForm2Submit} />
+            <Form2 isLoading={loading} currentState={form1} handleForm2Submit={handleForm2Submit} />
           )}
         </div>
       </div>

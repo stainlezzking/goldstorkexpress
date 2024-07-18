@@ -57,7 +57,7 @@ const router = createBrowserRouter([
         element: <Service />,
       },
       {
-        path: "track",
+        path: "track/:id",
         element: <Track />,
       },
     ],

@@ -11,14 +11,11 @@ export const Form1 = function ({ handleForm1Submit, currentState }) {
   });
   const customSubmit = function (data) {
     handleForm1Submit(data);
-    // console.log("submited");
-    // addInfo(data, true);
     console.log(data);
-    // format date Month, day,Year
   };
   return (
     <>
-      <main>
+      <main className="max-w-[650px] mx-auto">
         <form onSubmit={handleSubmit(customSubmit)}>
           <h1 className="text-ash text-lg mb-5 font-medium"> CREATE NEW PACKAGE</h1>
           <div className="space-y-5">
