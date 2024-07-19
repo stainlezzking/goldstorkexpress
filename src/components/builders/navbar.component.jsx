@@ -45,7 +45,7 @@ export default function Navbar() {
             </svg>
             <div className="max-md:text-center max-md:text-sm">
               <p>Call Us</p>
-              <p>(00) 112 365 489</p>
+              <a href="tel:+447301817026">+44 7301 817026</a>
             </div>
           </div>
         </div>
@@ -155,7 +155,7 @@ export default function Navbar() {
                   </svg>
                   <div>
                     <p>Call Us</p>
-                    <p>(00) 112 365 489</p>
+                    <a href="tel:+447301817026">+44 7301 817026</a>
                   </div>
                 </div>
               </div>

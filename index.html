@@ -5,6 +5,27 @@
     <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gold Stork Express</title>
+    <style>
+      #google_translate_element {
+        border-radius: 5px;
+        display: block;
+        z-index: 200;
+        padding: 5px 10px;
+      }
+      .goog-logo-link {
+        display: none !important;
+      }
+      #google_translate_element a {
+        display: none;
+      }
+      .goog-te-gadget {
+        color: transparent !important;
+      }
+
+      .goog-te-gadget .goog-te-combo {
+        color: blue !important;
+      }
+    </style>
     <!-- Smartsupp Live Chat script -->
     <script type="text/javascript">
       var _smartsupp = _smartsupp || {};
@@ -30,5 +51,13 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+
+    <!-- Google translate setup, tag location is inside footer -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: "en" }, "google_translate_element");
+      }
+    </script>
   </body>
 </html>

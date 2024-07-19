@@ -20,12 +20,15 @@ export default function Footer({ children }) {
       </div>
       <div className={"mx-auto " + maxWidthConstant}>
         <div className="w-fit px-7  max-md:gap-y-10 grid gap-x-10 grid-cols-2 md:grid-cols-4 lg:grid-cols-5 py-14">
-          <div className="col-span-2">
+          <div className="col-span-2 space-y-2">
             <p className="text-[#E8E8E8]">
               GoldStorkExpress is a leading logistics and delivery service based in England, dedicated to providing reliable and efficient shipping
               solutions locally and globally. With a commitment to excellence and customer satisfaction, we strive to simplify logistics challenges
               and deliver peace of mind with every shipment.
             </p>
+            <div>
+              <div id="google_translate_element"></div>
+            </div>
           </div>
           <div className="col-span-2 lg:grid-col-span-3 max-sm:space-y-6 sm:flex gap-x-5">
             <div className="space-y-5 text-white">
@@ -53,7 +56,7 @@ export default function Footer({ children }) {
                 </svg>
                 <div>
                   <p>Call Us</p>
-                  <p>(00) 112 365 489</p>
+                  <p>+44 7301 817026</p>
                 </div>
               </div>
             </div>

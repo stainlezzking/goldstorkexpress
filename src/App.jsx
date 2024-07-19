@@ -16,6 +16,8 @@ import { onAuthChange } from "./components/firebase";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { saveUser } from "./redux/reducer";
+import Register from "./pages/login";
+import NotFound from "./pages/notfound";
 const blogsLoader = function ({ params }) {
   const result = blogs.find((blog) => blog._id == params.id);
   if (!result) throw new Error("404 Page Not Found! Custom.");
@@ -60,6 +62,10 @@ const router = createBrowserRouter([
         path: "track/:id",
         element: <Track />,
       },
+      {
+        path: "login",
+        element: <Register />,
+      },
     ],
     // errorElement: <Notfound />,
   },
@@ -68,7 +74,10 @@ const router = createBrowserRouter([
     element: <AdminRoot />,
     children: AdminRoutes,
   },
-  ,
+  {
+    path: "*",
+    element: <NotFound />,
+  },
 ]);
 
 function App() {
