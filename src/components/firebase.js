@@ -11,6 +11,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  updateDoc,
   orderBy,
   query,
   limit,
@@ -35,7 +36,10 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const COLLECTION = "tracker";
+const COLLECTION = {
+  TRACKER: "tracker",
+  USER: "users",
+};
 
 // auth change Listener
 export const onAuthChange = (callback) => onAuthStateChanged(auth, callback);
@@ -54,14 +58,49 @@ export const signUpWithPassword = async function (email, password) {
 };
 
 export const getTrackers = async function () {
-  const docs = await getDocs(collection(db, COLLECTION));
-  return docs;
+  const snapshot = await getDocs(collection(db, COLLECTION.TRACKER));
+  return snapshot;
+};
+
+export const getOneTracker = async function (id) {
+  try {
+    const userRef = doc(db, COLLECTION.TRACKER, id);
+    const tracker = await getDoc(userRef);
+    return {
+      success: true,
+      data: tracker.data(),
+      exists: tracker.exists(),
+    };
+  } catch (e) {
+    return {
+      success: false,
+      message: e.message,
+      data: null,
+    };
+  }
 };
 
 // CREATE TRACKER
 export const createTracker = async function (data) {
   try {
-    const docRef = await addDoc(collection(db, COLLECTION), data);
+    const docRef = await addDoc(collection(db, COLLECTION.TRACKER), data);
+    return {
+      success: true,
+      id: docRef.id,
+    };
+  } catch (e) {
+    return {
+      success: false,
+      message: e.message,
+    };
+  }
+};
+
+export const updateTracker = async function (id, data) {
+  try {
+    const docRef = doc(db, COLLECTION.TRACKER, id);
+    const response = await updateDoc(docRef, data);
+    console.log(response);
     return {
       success: true,
       id: docRef.id,
@@ -76,7 +115,7 @@ export const createTracker = async function (data) {
 
 export const createUser = async function (newuser) {
   try {
-    const userRef = await doc(db, "users", newuser.uid);
+    const userRef = await doc(db, COLLECTION.USER, newuser.uid);
     const user = await getDoc(userRef);
     delete newuser.uid;
 

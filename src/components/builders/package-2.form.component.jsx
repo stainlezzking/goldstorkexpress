@@ -2,7 +2,7 @@ import Button from "./button.component";
 import Tracker from "./track.component";
 import schemaFormat from "@/components/utilities";
 
-export const Form2 = function ({ handleForm2Submit, currentState, isLoading }) {
+export const Form2 = function ({ handleForm2Submit, currentState, isLoading, update = false }) {
   const tracker = schemaFormat(currentState);
   return (
     <main>
@@ -11,7 +11,7 @@ export const Form2 = function ({ handleForm2Submit, currentState, isLoading }) {
       </div>
       <div className="max-w-[400px] mx-auto mt-10">
         {tracker.map((track, i) => (
-          <Tracker key={i} track={track} h1Class="text-lg" pClass="text-base" />
+          <Tracker key={i} track={track} h1Class="text-lg" pClass="text-base" preview={true} />
         ))}
         <div className="ps-5 pb-6 relative text-secondary">
           <div className="absolute top-0 -left-[8px] w-5 h-5 bg-white flex items-center justify-center">
@@ -42,7 +42,7 @@ export const Form2 = function ({ handleForm2Submit, currentState, isLoading }) {
             </g>
           </svg>
         )}
-        Create
+        {update ? "Update" : "Create"}
       </Button>
     </main>
   );

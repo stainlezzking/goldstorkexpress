@@ -1,16 +1,30 @@
 import { Link } from "react-router-dom";
 import { Skeleton } from "../ui/skeleton";
+import { format } from "date-fns";
 
-export default function TrackerPreview() {
+export default function TrackerPreview({ tracker }) {
   return (
     <div className="bg-white rounded-lg p-5 col-span-1">
-      <p>1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed</p>
-      <h1 className="text-font-medium"> Name : John Snow</h1>
-      <h1 className="text-font-medium"> Phone : +991 289348043</h1>
-      <h1 className="text-font-medium"> Posted on : John Snow</h1>
-      <span>Delivery date : 27th July 2024</span>
+      <p> {tracker.id} </p>
+      <h1 className="font-medium">
+        Name : <span className="font-normal">John Snow</span>
+      </h1>
+      <h1 className="font-medium">
+        Phone : <span className="font-normal">+991 289348043</span>
+      </h1>
+      <h1 className="font-medium">
+        Dropped on : <span className="font-normal">{format(tracker.office1_date, "do MMMM yyyy")} </span>
+      </h1>
+      <span>Delivery date : {format(tracker.loc2_date, "do MMMM yyyy")} </span>
       <div className="flex justify-between py-2">
-        <Link className="underline block hover:text-secondary/80 text-secondary">Edit</Link>
+        <div className="flex gap-x-2">
+          <Link to={"/admin/edit/" + tracker.id} className="underline block hover:text-secondary/80 text-secondary">
+            Edit
+          </Link>
+          <Link to={"/track/" + tracker.id} className="underline block hover:text-primary/80 text-primary">
+            Preview
+          </Link>
+        </div>
         <Link className="underline block text-red-600">Delete</Link>
       </div>
     </div>

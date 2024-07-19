@@ -11,7 +11,6 @@ export const Form1 = function ({ handleForm1Submit, currentState }) {
   });
   const customSubmit = function (data) {
     handleForm1Submit(data);
-    console.log(data);
   };
   return (
     <>
@@ -19,6 +18,38 @@ export const Form1 = function ({ handleForm1Submit, currentState }) {
         <form onSubmit={handleSubmit(customSubmit)}>
           <h1 className="text-ash text-lg mb-5 font-medium"> CREATE NEW PACKAGE</h1>
           <div className="space-y-5">
+            <div className="border-b border-b-secondary pb-5 grid grid-cols-1 md:grid-cols-2 md:gap-x-10 md:space-y-0 md:gap-y-5 max-md:space-y-5">
+              <div className="col-span-full space-y-1">
+                <label className="block">Name</label>
+                <input
+                  type="text"
+                  {...register("name", { required: "Must fill this information" })}
+                  placeholder="John Snow "
+                  className="w-full rounded-[10px] border border-[#CDD0D5] p-3"
+                />
+                <p className="text-orange-800/60 text-xs">{errors.name?.message}</p>
+              </div>
+              <div className="col-span-1 space-y-1">
+                <label className="block">Email</label>
+                <input
+                  type="email"
+                  {...register("email", { required: "Must fill this information" })}
+                  placeholder="wazaobia@email.com"
+                  className="w-full rounded-[10px] border border-[#CDD0D5] p-3"
+                />
+                <p className="text-orange-800/60 text-xs">{errors.email?.message}</p>
+              </div>
+              <div className="col-span-1 space-y-1">
+                <label className="block">Phone</label>
+                <input
+                  type="number"
+                  {...register("phone", { required: "Must fill this information" })}
+                  placeholder="+991 278839 2898"
+                  className="w-full rounded-[10px] border border-[#CDD0D5] p-3"
+                />
+                <p className="text-orange-800/60 text-xs">{errors.phone?.message}</p>
+              </div>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-10 md:space-y-0 md:gap-y-5 max-md:space-y-5">
               <div className="space-y-1 col-span-full">
                 <label className="block font-normal">Office Location </label>

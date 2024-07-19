@@ -17,21 +17,31 @@ import Footer from "@/components/builders/footer.component";
 
 import blogs from "../database.json";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 const maxWidthConstant = "max-w-[1200px]";
 
 export default function Home() {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const customSubmit = function (data) {
+    navigate("/track/" + data.search);
+  };
   return (
     <div>
       <div className="relative">
         <img src={banner} alt="" className="max-md:h-[60vh] max-[1200px]:aspect-video object-cover" />
         <div className="container absolute top-0 flex items-center h-full left-1/2 -translate-x-1/2 ">
           <div className="caption max-w-[550px]  w-full flex gap-y-10 flex-col">
-            <form className="w-full items-center flex ">
+            <form className="w-full items-center flex " onSubmit={handleSubmit(customSubmit)}>
               <input
+                {...register("search")}
                 type="search"
                 placeholder="Enter Your Tracking Number"
-                className=" py-3 flex-grow rounded-md rounded-e-none p-3 text-md focus:border-primary focus:outline-none"
+                className="py-3 flex-grow rounded-md rounded-e-none p-3 text-md focus:border-primary focus:outline-none"
               />
               <button className="max-md:px-3 md:w-[130px] items-center justify-center bg-primary hover:bg-primary/45 text-white self-stretch block">
                 Track

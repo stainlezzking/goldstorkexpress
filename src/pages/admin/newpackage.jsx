@@ -6,21 +6,9 @@ import { Form2 } from "@/components/builders/package-2.form.component";
 import { createTracker } from "@/components/firebase";
 import { useNavigate } from "react-router-dom";
 
-const x = {
-  loc1_date: "2024-07-14T20:29",
-  loc1_location: "first location",
-  loc1_name: "name of facility",
-  loc2_date: "2024-07-14T20:30",
-  loc2_location: "name of Facility",
-  loc2_name: "second location",
-  office1_date: "2024-07-14T20:29",
-  office2_date: "2024-07-14T20:29",
-  office_loc: "office location",
-};
-
 function NewPackage() {
-  const [position, setPosition] = useState(1);
-  const [form1, setForm1] = useState(x);
+  const [position, setPosition] = useState(0);
+  const [form1, setForm1] = useState();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const handleForm1Submit = function (data) {
@@ -30,7 +18,7 @@ function NewPackage() {
   };
   const handleForm2Submit = async function () {
     setLoading(true);
-    const result = await createTracker(form1);
+    const result = await createTracker({ ...form1, createdAt: Date.now() });
     if (result.success) {
       return navigate("/track/" + result.id);
     }

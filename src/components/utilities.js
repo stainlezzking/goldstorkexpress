@@ -1,5 +1,6 @@
 export default function schemaFormat(data) {
   // date format = November 1, 2022, 11:59 am
+  console.log(data);
   const arrived_office = {
     stage: 1,
     title: `GSE is in possession of item`,

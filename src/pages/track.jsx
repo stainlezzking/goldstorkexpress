@@ -1,12 +1,11 @@
 import Bannersection from "@/components/builders/banner.component";
-import BlogPreview from "@/components/builders/blog-preview.component";
 import Footer from "@/components/builders/footer.component";
-import SubTitle from "@/components/builders/title.component";
 import banner from "../assets/pages-banner/contact.png";
 import FAQ from "@/components/builders/faq.component";
 import Section from "@/components/builders/section.component";
-import Button from "@/components/builders/button.component";
 import { Clipboard, Flowbite } from "flowbite-react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const maxWidthConstant = "max-w-[1000px]";
 import faq from "../faq.json";
@@ -15,28 +14,70 @@ import { useEffect, useState } from "react";
 import schemaFormat from "@/components/utilities";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getOneTracker } from "@/components/firebase";
+import { Link, useParams } from "react-router-dom";
+import { compareDesc, format, isBefore } from "date-fns";
 
 /*
-I WANT TO SHOW A SKELETON LOADING PAGE BEFORE
+I WANT TO SHOW A SKELETON LOADING PAGE BEFORE,
+4 stages
+- your item arrived at our storage pack on
+- your item left our post office on ..
+- your item arrived at blah blah blah
 */
+
+const desciption = function (index, name, date, location) {
+  const choices = {
+    1: `Your item was dropped at our office at exactly ${format(date, "H:m aaa")} ${format(
+      date,
+      "MMM d, yyyy"
+    )} in ${location}. to be devlivered to ${name}`,
+    2: `Your departed our office at ${format(date, "H:m aaa")} on ${format(date, "MMM d, yyyy")}.`,
+    3: `Your item arrived at ${location} on ${format(date, "MMM d, yyyy")} at exactly ${format(date, "H:m aaa")}. `,
+    4: `Your item arrived in receiver location at ${location} on ${format(date, "MMM d, yyyy")} at ${format(
+      date,
+      "H:m aaa"
+    )}. waiting for  contact from receiver ${name} to deliver to the individual`,
+  };
+  return choices[index];
+};
+
 export default function Track() {
-  const [info, setInfo] = useState();
-  useEffect(function () {
-    setTimeout(function () {
-      const tracker = schemaFormat({
-        loc1_date: "2024-07-14T20:29",
-        loc1_location: "first location",
-        loc1_name: "name of facility",
-        loc2_date: "2024-07-14T20:30",
-        loc2_location: "name of Facility",
-        loc2_name: "second location",
-        office1_date: "2024-07-14T20:29",
-        office2_date: "2024-07-14T20:29",
-        office_loc: "office location",
+  const [tracker, setTracker] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
+  const [lastupdate, setLastupdate] = useState(null);
+  const [name, setName] = useState("");
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  useEffect(
+    function () {
+      getOneTracker(id).then((info) => {
+        if (info.success && info.exists) setTracker(schemaFormat(info.data));
+        if (info.success && !info.exists) setError("Package does not exists");
+        if (!info.success) setError(info.message);
+        if (info.success && info.exists) {
+          // get and update last updated
+          const schemaForm = schemaFormat(info.data);
+          schemaForm.sort((t1, t2) => compareDesc(t1.date, t2.date));
+          setLastupdate(schemaForm.find((track) => isBefore(track.date, Date.now())));
+          console.log(schemaForm.find((track) => isBefore(track.date, Date.now())).date);
+        }
+        setName(info.name);
       });
-      setInfo(tracker);
-    }, 5000);
-  }, []);
+    },
+    [id]
+  );
+
+  const customSubmit = function (data) {
+    navigate("/track/" + data.search);
+  };
   return (
     <>
       <Bannersection topic="GPS Tracker" subtitle="Track" src={banner} />
@@ -51,7 +92,7 @@ export default function Track() {
         </div>
         <div className="pt-10 font-bold text-secondary">
           <p>Tracking Number:</p>
-          <h1 className="text-3xl">92817100000002145</h1>
+          <h1 className="text-3xl">{id}</h1>
           <div className="flex justify-between max-w-[600px]">
             <button className="gap-x-2 mt-1 flex items-center">
               <svg className="w-4" viewBox="0 0 24 24" fill="none">
@@ -77,12 +118,11 @@ export default function Track() {
           </div>
         </div>
         <div className="grid grid-cols-2 py-5 items-start">
-          {info ? (
+          {tracker ? (
             <div className="p-5 space-y-2 col-span-1 max-w-[450px] bg-secondary/20 relative before:w-2 before:h-full before:bg-secondary before:absolute before:top-0 before:left-0">
               <h1 className="text-lg text-secondary font-medium">Latest Update</h1>
               <p className="text-secondary text-sm border-b border-b-secondary pb-5">
-                Your item was delivered to an individual at the address at 12:41 pm on November 2, 2022 in BALDWIN PARK, CA 91706. The item was signed
-                for by C LOPEZ.
+                {desciption(lastupdate.stage, name, lastupdate.date, lastupdate.location)}
               </p>
               <div className="mt-5">
                 <h1 className="font-medium text-secondary">Get More Out of USPS Tracking:</h1>
@@ -94,10 +134,19 @@ export default function Track() {
               <Skeleton className="h-4  w-full" />
             </div>
           )}
-          {info ? (
+          {error && (
+            <div className="w-screen h-screen fixed flex flex-col items-center justify-center z-30 top-0 left-0 bg-black/70">
+              <p className="text-white text-lg font-medium"> An Error Occured </p>
+              <h1 className="text-red-500 font-medium text-2xl">{error}</h1>
+              <Link to="/" className="text-green-300  underline">
+                Go back
+              </Link>
+            </div>
+          )}
+          {tracker && !error ? (
             <div className="col-span-1 px-5">
-              {info.map((track, i) => (
-                <Tracker key={i} track={track} h1Class="text-lg" pClass="text-base" />
+              {tracker.map((track, i) => (
+                <Tracker key={i} track={track} />
               ))}
               <div className="ps-5 pb-6 relative text-secondary">
                 <div className="absolute top-0 -left-[8px] w-5 h-5 bg-white flex items-center justify-center">
@@ -133,7 +182,13 @@ export default function Track() {
       </Section>
       <Section>
         <h1 className="text-secondary text-lg">Search another package</h1>
-        <Input type="text" className="border-slate-500 text-xl py-7" />
+        <form onSubmit={handleSubmit(customSubmit)}>
+          <input
+            type="text"
+            {...register("search")}
+            className="flex h-10 w-full rounded-md border bg-white px-3  ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-800 dark:bg-slate-950 dark:ring-offset-slate-950 dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300 border-slate-500 text-xl py-7"
+          />
+        </form>
       </Section>
       <Section className="bg-[#F4F4F4]">
         <FAQ faq={faq} />
