@@ -27,7 +27,8 @@ export default function Admin_Login() {
   });
 
   const onSubmit = async function (values) {
-    const result = await signInWithPassword(values);
+    // const result = await signInWithPassword(values);
+    const result = await signUpWithPassword(values.email, values.password);
     if (result.success) return navigate("/admin/dashboard");
     return setError(result.error);
   };

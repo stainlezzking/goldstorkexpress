@@ -18,7 +18,7 @@ export default function AdminRoot() {
   };
   useEffect(() => {
     if (!window.location.href.endsWith("/admin/") && !user && !isLoading) {
-      return navigate("/");
+      return navigate("/admin/");
     }
   });
   return (

@@ -3,7 +3,6 @@ import Footer from "@/components/builders/footer.component";
 import banner from "../assets/pages-banner/contact.png";
 import FAQ from "@/components/builders/faq.component";
 import Section from "@/components/builders/section.component";
-import { Clipboard, Flowbite } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +11,6 @@ import faq from "../faq.json";
 import Tracker, { SkeletonTraker } from "@/components/builders/track.component";
 import { useEffect, useState } from "react";
 import schemaFormat from "@/components/utilities";
-import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getOneTracker } from "@/components/firebase";
 import { Link, useParams } from "react-router-dom";
