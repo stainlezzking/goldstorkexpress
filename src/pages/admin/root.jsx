@@ -22,7 +22,7 @@ export default function AdminRoot() {
     if (!window.location.href.endsWith("/admin/") && !user && !isLoading) {
       return navigate("/admin/");
     }
-  });
+  }, [user]);
   return (
     <>
       <ToastContainer />

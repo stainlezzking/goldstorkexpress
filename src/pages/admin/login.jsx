@@ -7,7 +7,8 @@ import { set, z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInWithPassword, signUpWithPassword } from "@/components/firebase";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -18,6 +19,7 @@ const formSchema = z.object({
 export default function Admin_Login() {
   const navigate = useNavigate();
   const [err, setError] = useState("");
+  const { isLoading, user } = useSelector((state) => state.auth);
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -25,6 +27,12 @@ export default function Admin_Login() {
       password: "",
     },
   });
+  useEffect(
+    function () {
+      if (user) return navigate("/admin/dashboard");
+    },
+    [user]
+  );
 
   const onSubmit = async function (values) {
     const result = await signInWithPassword(values);
