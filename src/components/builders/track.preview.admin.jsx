@@ -2,15 +2,16 @@ import { Link } from "react-router-dom";
 import { Skeleton } from "../ui/skeleton";
 import { format } from "date-fns";
 
-export default function TrackerPreview({ tracker }) {
+export default function TrackerPreview({ tracker, handleDelete }) {
+  console.log(tracker);
   return (
     <div className="bg-white rounded-lg p-5 col-span-1">
       <p> {tracker.id} </p>
       <h1 className="font-medium">
-        Name : <span className="font-normal">John Snow</span>
+        Name : <span className="font-normal">{tracker.name}</span>
       </h1>
       <h1 className="font-medium">
-        Phone : <span className="font-normal">+991 289348043</span>
+        Phone : <span className="font-normal">{tracker.phone}</span>
       </h1>
       <h1 className="font-medium">
         Dropped on : <span className="font-normal">{format(tracker.office1_date, "do MMMM yyyy")} </span>
@@ -25,7 +26,9 @@ export default function TrackerPreview({ tracker }) {
             Preview
           </Link>
         </div>
-        <Link className="underline block text-red-600">Delete</Link>
+        <button onClick={() => handleDelete(tracker.id)} className="underline block text-red-600">
+          Delete
+        </button>
       </div>
     </div>
   );

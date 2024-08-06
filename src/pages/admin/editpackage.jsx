@@ -6,6 +6,7 @@ import { Form2 } from "@/components/builders/package-2.form.component";
 import { updateTracker, getOneTracker } from "@/components/firebase";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 function EditPackage() {
   const { id } = useParams();
@@ -44,7 +45,7 @@ function EditPackage() {
     }
     // an error occured
     console.log(result.message);
-    alert("An Error occured, show this to the devloper", e.message);
+    return toast("An Error occured, report this .." + e.message);
   };
 
   return (

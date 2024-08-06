@@ -96,6 +96,23 @@ export const createTracker = async function (data) {
   }
 };
 
+// delete tracker
+export const deleteTracker = async function (id) {
+  try {
+    const res = await deleteDoc(doc(db, COLLECTION.TRACKER, id));
+    console.log("successfuly deleted " + res);
+    return {
+      success: true,
+      message: "Successfully deleted tracker",
+    };
+  } catch (e) {
+    return {
+      success: false,
+      message: `An Error occured : ${e.message}`,
+    };
+  }
+};
+
 export const updateTracker = async function (id, data) {
   try {
     const docRef = doc(db, COLLECTION.TRACKER, id);

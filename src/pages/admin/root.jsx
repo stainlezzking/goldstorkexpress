@@ -2,6 +2,8 @@ import { logOut } from "@/components/firebase";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AdminRoot() {
   const { isLoading, user } = useSelector((state) => state.auth);
@@ -23,6 +25,7 @@ export default function AdminRoot() {
   });
   return (
     <>
+      <ToastContainer />
       <div className="min-h-screen flex flex-col justify-between">
         <div className="bg-secondary py-10 text-2xl flex items-center ">
           <div className="container text-white flex max-sm:justify-between">
@@ -38,21 +41,19 @@ export default function AdminRoot() {
             <div className="sm:flex-grow text-center font-medium sm:me-3 ">ADMIN</div>
           </div>
         </div>
-        <div className="py-3 flex gap-x-5 justify-center text-secondary text-lg">
-          <NavLink className={({ _, isActive }) => (isActive ? "font-medium text-secondary/90 underline" : "")} to="/admin/dashboard">
-            Dashboard
-          </NavLink>
-          <NavLink className={({ _, isActive }) => (isActive ? "font-medium text-secondary/90 underline" : "")} to="/admin/newpackage">
-            Create Package
-          </NavLink>
-          <button
-            onClick={() => handleLogout()}
-            className="font-medium text-orange-700 hover:text-white hover:bg-orange-700 px-3 "
-            to="/admin/newpackage"
-          >
-            Logout
-          </button>
-        </div>
+        {user && (
+          <div className="py-3 flex gap-x-5 justify-center text-secondary text-lg">
+            <NavLink className={({ _, isActive }) => (isActive ? "font-medium text-secondary/90 underline" : "")} to="/admin/dashboard">
+              Dashboard
+            </NavLink>
+            <NavLink className={({ _, isActive }) => (isActive ? "font-medium text-secondary/90 underline" : "")} to="/admin/newpackage">
+              Create Package
+            </NavLink>
+            <button onClick={() => handleLogout()} className="font-medium text-orange-700 hover:text-white hover:bg-orange-700 px-3 " to="/admin/newpackage">
+              Logout
+            </button>
+          </div>
+        )}
         <div className="flex-grow justify-stretch flex items-stretch">{isLoading ? <h1> Loading</h1> : <Outlet />}</div>
       </div>
     </>

@@ -26,10 +26,7 @@ I WANT TO SHOW A SKELETON LOADING PAGE BEFORE,
 
 const desciption = function (index, name, date, location) {
   const choices = {
-    1: `Your item was dropped at our office at exactly ${format(date, "H:m aaa")} ${format(
-      date,
-      "MMM d, yyyy"
-    )} in ${location}. to be devlivered to ${name}`,
+    1: `Your item was dropped at our office at exactly ${format(date, "H:m aaa")} ${format(date, "MMM d, yyyy")} in ${location}. to be devlivered to ${name}`,
     2: `Your departed our office at ${format(date, "H:m aaa")} on ${format(date, "MMM d, yyyy")}.`,
     3: `Your item arrived at ${location} on ${format(date, "MMM d, yyyy")} at exactly ${format(date, "H:m aaa")}. `,
     4: `Your item arrived in receiver location at ${location} on ${format(date, "MMM d, yyyy")} at ${format(
@@ -53,10 +50,10 @@ export default function Track() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   useEffect(
     function () {
       getOneTracker(id).then((info) => {
+        console.log("the info document ", info);
         if (info.success && info.exists) setTracker(schemaFormat(info.data));
         if (info.success && !info.exists) setError("Package does not exists");
         if (!info.success) setError(info.message);
@@ -64,10 +61,10 @@ export default function Track() {
           // get and update last updated
           const schemaForm = schemaFormat(info.data);
           schemaForm.sort((t1, t2) => compareDesc(t1.date, t2.date));
-          setLastupdate(schemaForm.find((track) => isBefore(track.date, Date.now())));
-          console.log(schemaForm.find((track) => isBefore(track.date, Date.now())).date);
+          const Lupdate = schemaForm.find((track) => isBefore(track.date, Date.now())) || schemaForm.find((t) => t.stage == 1);
+          setLastupdate(Lupdate);
+          setName(info.data.name);
         }
-        setName(info.name);
       });
     },
     [id]

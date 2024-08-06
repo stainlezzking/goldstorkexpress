@@ -1,13 +1,22 @@
 import TrackerPreview, { SkeletonTrackerPreview } from "@/components/builders/track.preview.admin";
+import { deleteTracker } from "@/components/firebase";
 import { getTrackersThunk } from "@/redux/reducer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
   const obj = useSelector((state) => state.trackers);
   const { data, isLoading, error } = obj;
+
+  const handleDelete = async (id) => {
+    console.log("called handle delete", id);
+    const response = await deleteTracker(id);
+    toast(response.message);
+    return dispatch(getTrackersThunk());
+  };
   useEffect(function () {
     dispatch(getTrackersThunk());
   }, []);
@@ -32,7 +41,7 @@ export default function Dashboard() {
           </button>
         </div>
       ) : (
-        data.map((tracker, i) => <TrackerPreview key={i} tracker={tracker} />)
+        data.map((tracker, i) => <TrackerPreview handleDelete={handleDelete} key={i} tracker={tracker} />)
       )}
     </div>
   );

@@ -11,7 +11,7 @@ export default function schemaFormat(data) {
     stage: 2,
     title: `Departed post office`,
     location: data.office_loc,
-    date: data.office1_date,
+    date: data.office2_date,
   };
   const first_location = {
     stage: 3,
