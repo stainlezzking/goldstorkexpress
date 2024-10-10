@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 
 const navLinksComponent = function (path, href) {
   return {
-    mobile: `mt-5 max-w-[300px] w-full text-secondary px-5 h-12 hover:text-primary flex items-center ${path == href && "bg-white"}`,
+    mobile: `mt-5 max-w-[300px] w-full text-secondary px-5 h-12 hover:text-primary flex items-center ${path == href && ""}`,
     desktop: ` ${
-      path == href && "bg-white text-primary"
+      path == href && " active"
     } relative py-3 hover:text-white/80 px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40`,
     customer: "bg-white text-secondary px-5 h-12 hover:text-primary flex items-center ",
   };
