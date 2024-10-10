@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  ul.nav-active-selector .active {
+    @apply text-white font-medium;
+  }
+  .container {
+    max-width: 1200px !important;
+  }
+  .main-nav a:hover span,
+  .main-nav a.active span {
+    width: 60%;
+  }
+}
