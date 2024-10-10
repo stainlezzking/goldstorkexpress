@@ -1,5 +1,5 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { NavLink } from "./navlink";
 
 export default function Navbar() {
   return (
@@ -84,27 +84,31 @@ export default function Navbar() {
                       <div>
                         <ul className="space-y-2 text-lg font-medium mt-10 nav-active-selector">
                           <li>
-                            <NavLink href="/" className="py-2 hover:text-white w-full block">
+                            <NavLink type="mobile" href="/" className="py-2 hover:text-white w-full block">
                               Home
                             </NavLink>
                           </li>
                           <li>
-                            <NavLink href="/about" className="py-2 hover:text-white w-full block">
+                            <NavLink type="mobile" href="/about" className="py-2 hover:text-white w-full block">
                               About
                             </NavLink>
                           </li>
                           <li>
-                            <NavLink href="/services" className="py-2 hover:text-white w-full block">
+                            <NavLink type="mobile" href="/services" className="py-2 hover:text-white w-full block">
                               Service
                             </NavLink>
                           </li>
                           <li>
-                            <NavLink href="/contact" className="py-2 hover:text-white w-full block">
+                            <NavLink type="mobile" href="/contact" className="py-2 hover:text-white w-full block">
                               Contact
                             </NavLink>
                           </li>
                         </ul>
-                        <NavLink className="mt-5 bg-white max-w-[300px] w-full text-secondary px-5 h-12 hover:text-primary flex items-center  " href="/login">
+                        <NavLink
+                          type="customer"
+                          className="mt-5 bg-white max-w-[300px] w-full text-secondary px-5 h-12 hover:text-primary flex items-center  "
+                          href="/login"
+                        >
                           <p>Customer Portal Login </p>
                         </NavLink>
                       </div>
@@ -163,43 +167,30 @@ export default function Navbar() {
           <div className="container mx-auto">
             <div className="flex justify-between items-end text-white">
               <ul className="gap-x-3 flex main-nav ">
-                <NavLink
-                  className="relative py-3 hover:text-white/80 px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
-                  href="/"
-                >
+                <NavLink type="desktop" href="/">
                   <p>Home</p>
                   <span className="h-[2px] transition-[width] duration-600 w-0 bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
                 </NavLink>
-                <NavLink
-                  className="relative py-3 hover:text-white/80 px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
-                  href="/about"
-                >
+                <NavLink type="desktop" href="/about">
                   <p>About</p>
                   <span className="h-[2px] transition-[width] duration-600 w-0 bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
                 </NavLink>
-                <NavLink
-                  className="relative py-3 hover:text-white/80 px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
-                  href="/services"
-                >
+                <NavLink type="desktop" href="/services">
                   <p>Services</p>
                   <span className="h-[2px] transition-[width] duration-600 w-0 bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
                 </NavLink>
-                <NavLink
-                  className="relative py-3 hover:text-white/80 px-5 block after:border-e after:block after:absolute after:right-0 after:w-[2px] after:h-[40%] after:top-1/2 after:-translate-y-1/2 after:border-e-white/40"
-                  href="/contact"
-                >
+                <NavLink type="desktop" href="/contact">
                   <p>Contact</p>
                   <span className="h-[2px] transition-[width] duration-600 w-0 bg-white block absolute bottom-0 left-1/2 -translate-x-1/2"></span>
                 </NavLink>
               </ul>
-              <NavLink className="bg-white text-secondary px-5 h-12 hover:text-primary flex items-center  " href="/login">
+              <NavLink type="customer" href="/login">
                 <p>Customer Portal Login </p>
               </NavLink>
             </div>
           </div>
         </div>
       </div>
-      <Outlet />
     </>
   );
 }

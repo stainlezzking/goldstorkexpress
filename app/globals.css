@@ -14,3 +14,26 @@
     width: 60%;
   }
 }
+
+#google_translate_element {
+  border-radius: 5px;
+  display: block;
+  z-index: 200;
+  padding: 5px 10px;
+}
+.goog-te-combo:nth-child(2) {
+  display: none;
+}
+.goog-logo-link {
+  display: none !important;
+}
+#google_translate_element a {
+  display: none;
+}
+.goog-te-gadget {
+  color: transparent !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+  color: blue !important;
+}

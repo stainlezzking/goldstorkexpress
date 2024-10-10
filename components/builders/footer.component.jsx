@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FloatingElements } from "./translate+customercare";
 
 const maxWidthConstant = "max-w-[1200px]";
 
@@ -80,6 +81,8 @@ export default function Footer({ children }) {
       <div className="py-2 border-t border-t-[#4E5683] text-center text-white">
         <p>Copyright &copy; of Gold Stork Express</p>
       </div>
+      <div id="googlescript_location"></div>
+      <FloatingElements />
     </div>
   );
 }
