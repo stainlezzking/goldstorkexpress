@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+"use client";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 export const SearchAnother = function () {

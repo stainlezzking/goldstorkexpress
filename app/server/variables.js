@@ -1,7 +1,5 @@
 const COLLECTION = {
-  list: "listings",
-  admin: "admin",
-  mailList: "maillist",
+  TRACKER: "tracker",
+  USER: "users",
 };
-
 export default COLLECTION;

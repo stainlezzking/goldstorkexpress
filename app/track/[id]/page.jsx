@@ -1,20 +1,20 @@
 import Bannersection from "@/components/builders/banner.component";
 import Footer from "@/components/builders/footer.component";
-import banner from "../assets/pages-banner/contact.png";
+import banner from "@/app/assets/pages-banner/contact.png";
 import FAQ from "@/components/builders/faq.component";
 import Section from "@/components/builders/section.component";
 
 const maxWidthConstant = "max-w-[1000px]";
-import faq from "../faq.json";
+import faq from "@/faq.json";
 import Tracker, { SkeletonTraker } from "@/components/builders/track.component";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import schemaFormat from "@/components/utilities";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getOneTracker } from "@/components/firebase";
-import { Link, useParams } from "react-router-dom";
 import { compareDesc, format, isBefore } from "date-fns";
 import { SearchAnother } from "./searchagain";
 import { notFound } from "next/navigation";
+import Link from "next/link";
+import { getOneTracker } from "@/app/server/trackers";
 
 /*
 I WANT TO SHOW A SKELETON LOADING PAGE BEFORE,
@@ -26,7 +26,10 @@ I WANT TO SHOW A SKELETON LOADING PAGE BEFORE,
 
 const desciption = function (index, name, date, location) {
   const choices = {
-    1: `Your item was dropped at our office at exactly ${format(date, "H:m aaa")} ${format(date, "MMM d, yyyy")} in ${location}. to be devlivered to ${name}`,
+    1: `Your item was dropped at our office at exactly ${format(date, "H:m aaa")} ${format(
+      date,
+      "MMM d, yyyy"
+    )} in ${location}. to be devlivered to ${name}`,
     2: `Your departed our office at ${format(date, "H:m aaa")} on ${format(date, "MMM d, yyyy")}.`,
     3: `Your item arrived at ${location} on ${format(date, "MMM d, yyyy")} at exactly ${format(date, "H:m aaa")}. `,
     4: `Your item arrived in receiver location at ${location} on ${format(date, "MMM d, yyyy")} at ${format(
@@ -37,39 +40,22 @@ const desciption = function (index, name, date, location) {
   return choices[index];
 };
 
-export default function Track({ params }) {
-  const [tracker, setTracker] = useState(null);
-  const [lastupdate, setLastupdate] = useState(null);
-  const [name, setName] = useState("");
-
+export default async function Track({ params }) {
   let error = false;
-  const info = getOneTracker(params.id);
-  if (info.success && !info.exists) {
+  const info = await getOneTracker(params.id);
+  if (!info.exists) {
     return notFound();
   }
 
-  if (!info.success || !info.exists) {
-    error = info.message;
+  if (!info.success) {
+    throw new Error("An Error Occured on the Server message");
+    // return <div> An Error Occured on the Server</div>;
   }
+  const tracker = schemaFormat(info.data);
 
-  //   useEffect(
-  //     function () {
-  //       .then((info) => {
-  //         if (info.success && info.exists) setTracker(schemaFormat(info.data));
-  //         if (info.success && !info.exists) setError("Package does not exists");
-  //         if (!info.success) setError(info.message);
-  //         if (info.success && info.exists) {
-  //           // get and update last updated
-  //           const schemaForm = schemaFormat(info.data);
-  //           schemaForm.sort((t1, t2) => compareDesc(t1.date, t2.date));
-  //           const Lupdate = schemaForm.find((track) => isBefore(track.date, Date.now())) || schemaForm.find((t) => t.stage == 1);
-  //           setLastupdate(Lupdate);
-  //           setName(info.data.name);
-  //         }
-  //       });
-  //     },
-  //     [id]
-  //   );
+  const sF = schemaFormat(info.data).sort((t1, t2) => compareDesc(t1.date, t2.date));
+  const lastupdate = sF.find((track) => isBefore(track.date, Date.now())) || sF.find((t) => t.stage == 1);
+  const name = info.data.name;
 
   return (
     <>
@@ -85,7 +71,7 @@ export default function Track({ params }) {
         </div>
         <div className="pt-10 font-bold text-secondary">
           <p>Tracking Number:</p>
-          <h1 className="text-3xl">{id}</h1>
+          <h1 className="text-3xl">{params.id}</h1>
           <div className="flex justify-between max-w-[600px]">
             <button className="gap-x-2 mt-1 flex items-center">
               <svg className="w-4" viewBox="0 0 24 24" fill="none">
@@ -111,22 +97,15 @@ export default function Track({ params }) {
           </div>
         </div>
         <div className="grid grid-cols-2 py-5 items-start">
-          {tracker ? (
-            <div className="p-5 space-y-2 col-span-1 max-w-[450px] bg-secondary/20 relative before:w-2 before:h-full before:bg-secondary before:absolute before:top-0 before:left-0">
-              <h1 className="text-lg text-secondary font-medium">Latest Update</h1>
-              <p className="text-secondary text-sm border-b border-b-secondary pb-5">
-                {desciption(lastupdate.stage, name, lastupdate.date, lastupdate.location)}
-              </p>
-              <div className="mt-5">
-                <h1 className="font-medium text-secondary">Get More Out of USPS Tracking:</h1>
-              </div>
+          <div className="p-5 space-y-2 col-span-1 max-w-[450px] bg-secondary/20 relative before:w-2 before:h-full before:bg-secondary before:absolute before:top-0 before:left-0">
+            <h1 className="text-lg text-secondary font-medium">Latest Update</h1>
+            <p className="text-secondary text-sm border-b border-b-secondary pb-5">
+              {desciption(lastupdate.stage, name, lastupdate.date, lastupdate.location)}
+            </p>
+            <div className="mt-5">
+              <h1 className="font-medium text-secondary">Get More Out of USPS Tracking:</h1>
             </div>
-          ) : (
-            <div className="space-y-5">
-              <Skeleton className="h-[150px] rounded-md w-full" />
-              <Skeleton className="h-4  w-full" />
-            </div>
-          )}
+          </div>
           {error && (
             <div className="w-screen h-screen fixed flex flex-col items-center justify-center z-30 top-0 left-0 bg-black/70">
               <p className="text-white text-lg font-medium"> An Error Occured </p>
