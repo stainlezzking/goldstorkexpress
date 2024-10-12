@@ -66,7 +66,7 @@ export default async function Track({ params }) {
             GSE Tracking<sup>®</sup>
           </h1>
           <div className="font-medium flex gap-x-3 items-center">
-            <button>Tracking</button> /<button>FAQs</button>
+            <button>Tracking</button> /<Link href="#faqs">FAQs</Link>
           </div>
         </div>
         <div className="pt-10 font-bold text-secondary">
@@ -115,30 +115,28 @@ export default async function Track({ params }) {
               </Link>
             </div>
           )}
-          {tracker && (
-            <div className="col-span-1 px-5">
-              {tracker.map((track, i) => (
-                <Tracker key={i} track={track} />
-              ))}
-              <div className="ps-5 pb-6 relative text-secondary">
-                <div className="absolute top-0 -left-[8px] w-5 h-5 bg-white flex items-center justify-center">
-                  <span className="rounded-full bg-secondary block w-[60%] h-[60%]"> </span>
-                </div>
-                <div className="space-y-2">
-                  <div>
-                    <h1 className="text-sm hover:text-secondary/70 font-medium cursor-pointer">Hide tracker </h1>
-                  </div>
+          <div className="col-span-1 px-5">
+            {tracker.map((track, i) => (
+              <Tracker key={i} track={track} />
+            ))}
+            <div className="ps-5 pb-6 relative text-secondary">
+              <div className="absolute top-0 -left-[8px] w-5 h-5 bg-white flex items-center justify-center">
+                <span className="rounded-full bg-secondary block w-[60%] h-[60%]"> </span>
+              </div>
+              <div className="space-y-2">
+                <div>
+                  <h1 className="text-sm hover:text-secondary/70 font-medium cursor-pointer">Hide tracker </h1>
                 </div>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </Section>
       <Section>
         <h1 className="text-secondary text-lg">Search another package</h1>
         <SearchAnother />
       </Section>
-      <Section className="bg-[#F4F4F4]">
+      <Section id="faqs" className="bg-[#F4F4F4]">
         <FAQ faq={faq} />
       </Section>
       <Footer />
