@@ -36,3 +36,21 @@ export const deleteOneTracker = async function (id) {
     return { success: false, message: "An error occured " + e.message };
   }
 };
+
+export const updateTracker = async function (id, data) {
+  try {
+    await db.collection(COLLECTION.TRACKER).doc(id).set(data);
+    return { success: true, message: "Tracker updated successfully", id };
+  } catch (e) {
+    return { success: false, message: "An error occured " + e.message };
+  }
+};
+
+export const createTracker = async function (data) {
+  try {
+    const res = await db.collection(COLLECTION.TRACKER).add(data);
+    return { success: true, message: "Tracker created successfully", id: res.id };
+  } catch (e) {
+    return { success: false, message: "An error occured " + e.message };
+  }
+};

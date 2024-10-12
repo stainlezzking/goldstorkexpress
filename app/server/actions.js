@@ -1,9 +1,9 @@
 "use server";
 import { z } from "zod";
-import { signIn } from "../auth";
+import { signIn, signOut } from "../auth";
 import { db } from "./firebase";
 import md5 from "md5";
-import { deleteOneTracker } from "./trackers";
+import { createTracker, deleteOneTracker, getOneTracker, updateTracker } from "./trackers";
 import { revalidatePath } from "next/cache";
 
 const admin = z.object({
@@ -33,4 +33,25 @@ export const deleteTrackerAction = async function (id) {
   const res = await deleteOneTracker(id);
   if (res.success) revalidatePath("/", "layout");
   return res;
+};
+
+export const getOneTrackerAction = async function (id) {
+  const tracker = await getOneTracker(id);
+  return tracker;
+};
+
+export const updateTrackerAction = async function (id, data) {
+  const res = await updateTracker(id, data);
+  if (res.success) revalidatePath("/track/" + id, "page");
+  return res;
+};
+
+export const createTrackerAction = async function (data) {
+  const res = await createTracker(data);
+  return res;
+};
+
+export const logOut = async function () {
+  await signOut();
+  return { success: true };
 };

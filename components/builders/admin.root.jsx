@@ -1,11 +1,17 @@
 "use client";
+import { logOut } from "@/app/server/actions";
 import Link from "next/link";
-import { redirect, usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function AdminRoot() {
   const pathname = usePathname();
+  const router = useRouter();
+  const handleLogout = async function () {
+    await logOut();
+    router.push("/admin");
+  };
   return (
     <>
       <ToastContainer />
@@ -30,20 +36,10 @@ export default function AdminRoot() {
         <Link className={pathname == "/admin/newpackage" ? "font-medium text-secondary/90 underline" : ""} href="/admin/newpackage">
           Create Package
         </Link>
-        <form
-          action={async function () {
-            await signOut();
-            redirect("/admin/");
-          }}
-        >
-          <button
-            onClick={() => handleLogout()}
-            className="font-medium text-orange-700 hover:text-white hover:bg-orange-700 px-3 "
-            to="/admin/newpackage"
-          >
-            Logout
-          </button>
-        </form>
+
+        <button onClick={handleLogout} className="font-medium text-orange-700 hover:text-white hover:bg-orange-700 px-3 " to="/admin/newpackage">
+          Logout
+        </button>
       </div>
     </>
   );
