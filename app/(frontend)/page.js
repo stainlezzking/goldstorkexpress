@@ -1,16 +1,16 @@
 import Section from "@/components/builders/section.component";
 import SubTitle from "@/components/builders/title.component";
 import Whatwedo from "@/components/builders/whatwedo.component";
-import banner from "./assets/pages-banner/home-banner.png";
-import plane from "./assets/plane.png";
-import liquid from "./assets/liquid.png";
-import logistics from "./assets/logistics.png";
-import warehouse from "./assets/warehouse.png";
-import packagesolution from "./assets/package-solutions.png";
-import specializedtransport from "./assets/specialized-transport.png";
+import banner from "../assets/pages-banner/home-banner.png";
+import plane from "../assets/plane.png";
+import liquid from "../assets/liquid.png";
+import logistics from "../assets/logistics.png";
+import warehouse from "../assets/warehouse.png";
+import packagesolution from "../assets/package-solutions.png";
+import specializedtransport from "../assets/specialized-transport.png";
 import BlogPreview from "@/components/builders/blog-preview.component";
 
-import footerImage from "./assets/footer-image.png";
+import footerImage from "../assets/footer-image.png";
 import Button from "@/components/builders/button.component";
 import Footer from "@/components/builders/footer.component";
 
@@ -193,7 +193,8 @@ export default function Home() {
             <SubTitle> Why Us</SubTitle>
             <h1 className="text-heading text-4xl font-bold">We provide full range global logistics solution</h1>
             <p>
-              Leverage agile frameworks to provide a robust synopsis for strategy foster collaborative thinking to further the overall value proposition.
+              Leverage agile frameworks to provide a robust synopsis for strategy foster collaborative thinking to further the overall value
+              proposition.
               <br />
               <br />
               Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.

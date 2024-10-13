@@ -18,15 +18,17 @@ function EditPackage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(function () {
-    getOneTrackerAction(id).then((response) => {
-      console.log("response--", response);
-      setLoading(false);
-      if (response.success && response.exists) return setForm1(response.data);
-      if (response.success) return setError("Couldn't find your package");
-      return setError(response.message);
-    });
-  }, []);
+  useEffect(
+    function () {
+      getOneTrackerAction(id).then((response) => {
+        setLoading(false);
+        if (response.success && response.exists) return setForm1(response.data);
+        if (response.success) return setError("Couldn't find your package");
+        return setError(response.message);
+      });
+    },
+    [id]
+  );
   const handleForm1Submit = function (data) {
     setForm1(data);
     setPosition(1);

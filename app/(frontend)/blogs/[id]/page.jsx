@@ -20,7 +20,7 @@ export default function Oneblog({ params }) {
                     <p className="text-[#666C89] font-medium">{content.text}</p>
                   </div>
                   {content.sub.map((ct, i) => (
-                    <div className="space-y-2">
+                    <div className="space-y-2" key={i}>
                       <h1 className="font-medium text-sm ">{ct.title}</h1>
                       <p className="text-[#666C89] font-medium text-sm">{ct.text}</p>
                     </div>
@@ -29,7 +29,7 @@ export default function Oneblog({ params }) {
               );
             }
             return (
-              <div className="space-y-2">
+              <div className="space-y-2" key={index}>
                 <h1 className="font-bold">{content.title}</h1>
                 <p className="text-[#666C89] font-medium">{content.text}</p>
               </div>

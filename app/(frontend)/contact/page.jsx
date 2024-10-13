@@ -1,12 +1,11 @@
 import Bannersection from "@/components/builders/banner.component";
 import Footer from "@/components/builders/footer.component";
 import SubTitle from "@/components/builders/title.component";
-import banner from "../assets/pages-banner/contact.png";
+import banner from "../../assets/pages-banner/contact.png";
 import FAQ from "@/components/builders/faq.component";
 import Section from "@/components/builders/section.component";
 import Button from "@/components/builders/button.component";
 
-const maxWidthConstant = "max-w-[1000px]";
 import faq from "@/faq.json";
 
 export default function Contact() {
