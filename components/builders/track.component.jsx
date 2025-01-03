@@ -2,8 +2,17 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Skeleton } from "../ui/skeleton";
 import { isBefore } from "date-fns";
+
+const getTimeInTimezone = (timeZone) => {
+  const now = new Date();
+  // Get the date and time in the desired timezone
+  const localeString = now.toLocaleString("en-US", { timeZone });
+  const dateInTimeZone = new Date(localeString);
+  return dateInTimeZone;
+};
+
 export default function Tracker({ title, track, h1Class, pClass, preview = false }) {
-  const isDateBefore = isBefore(track.date, Date.now());
+  const isDateBefore = isBefore(track.date, getTimeInTimezone("America/New_York"));
   return (
     <div>
       <div
